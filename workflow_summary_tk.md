@@ -1,4 +1,4 @@
-# k-framework Interpretation
+# 5. k-framework Interpretation
 
 This part is a huge porcoddio of a mess. The problem with using TK's workflow as it is (already quite messy since Combine's way of dealing with models makes it impossible to have something clear and understandable) is that in his case all the decay channels had the same gen bin boundaries at the level of the datacard. This was exploited in the model itself and ALL bin boundaries were matched to ALL decay channels when performing the combination. 
 

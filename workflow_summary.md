@@ -1,4 +1,4 @@
-# Workflow Summary
+# 3. Signal Strength Fits
 
 ## Preliminary Operations
 

@@ -1,4 +1,4 @@
-# EFT Interpretation
+# 4. SMEFT Interpretation
 
 On 05.08.22 I started implementing the whole machinery to allow some kind of flexibility in performing fits for SMEFT coefficients. Since it is a bit convoluted, I try to write it down here so I will remember the main aspects.
 
