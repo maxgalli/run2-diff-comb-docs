@@ -1,4 +1,4 @@
-# 3. Signal Strength Fits
+# 3 - Signal Strength Fits
 
 ## Preliminary Operations
 

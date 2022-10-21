@@ -1,4 +1,4 @@
-# 2. Installation
+# 2 - Installation
 
 ## CMSSW 11_2 (ROOT 6.22)
 
