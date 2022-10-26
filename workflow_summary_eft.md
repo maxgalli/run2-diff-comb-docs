@@ -2,7 +2,24 @@
 
 ## Model Studies
 
-Using [EFTModelsStudies](https://github.com/maxgalli/EFTModelsStudies) and [EFTScalingEquations](https://github.com/maxgalli/EFTScalingEquations/tree/differentials_220506) it is possible to perform preliminary studies of the models before fitting them with the full likelihood. Starting from only one yaml file like e.g. [this one](https://gitlab.cern.ch/magalli/DifferentialCombinationRun2/-/blob/master/metadata/SMEFT/220926Atlas.yml), one can use ```plot_shape_matt_predictions.py```, ```chi_square_fitter.py``` and ```pca``` performing these studies for a single decay channel or the combination.
+Using [EFTModelsStudies](https://github.com/maxgalli/EFTModelsStudies) and [EFTScalingEquations](https://github.com/maxgalli/EFTScalingEquations/tree/differentials_220506) it is possible to perform preliminary studies of the models before fitting them with the full likelihood. Starting from only one yaml file like e.g. [this one](https://gitlab.cern.ch/magalli/DifferentialCombinationRun2/-/blob/master/metadata/SMEFT/220926Atlas.yml), one can use ```plot_shape_matt_predictions.py```, ```chi_square_fitter.py``` and ```pca``` performing these studies for a single decay channel or the combination. For more detailed information, once can refer to the README of the repo mentioned before.
+
+### Example
+
+Let's see an example that involves all of them, using a config model file located at ```/work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/221026Tutorial.yml```.
+
+The first thing to do consists in taking a look at how the Wilson coefficients written in the config file change the pt spectrum. This can be done by running:
+```
+python plot_shape_matt_predictions.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-prelim-SMEFT-topU3l_22_05_05 --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/EFTModelsStudies/SMEFT/FullStudies/CMS-prelim-SMEFT-topU3l_22_05_05-221026Tutorial --config-file /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/221026Tutorial.yml --channel hgg --study 1D
+```
+by taking a look at the parabolas, one can also adjust the boundaries in the config file, avoiding to waste time in the bigger fits later! Note that with the option ```--channel hgg``` we specify that we want to perform the study using the equations derived for the bins of Hgg differential analysis in its phase space, since the rivet routines were used.
+
+After this, one can use ```chi_square_fitter.py``` to perform a series of 1D and 2D scans using a simple chi square. The chi square is built using the mus measured with the differential analyses and their uncertainties, along with the covarance matrix computed within Combine. To perform these scans and plot the results, one can run
+```
+python chi_square_fitter.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-prelim-SMEFT-topU3l_22_05_05 --submodel-yaml /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/221026Tutorial.yml --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/EFTModelsStudies/SMEFT/FullStudies/CMS-prelim-SMEFT-topU3l_22_05_05-221026Tutorial --channels hgg
+```
+
+
 
 ## Fits
 
