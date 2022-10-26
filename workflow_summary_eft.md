@@ -1,5 +1,13 @@
 # 4 - SMEFT Interpretation
 
+## Model Studies
+
+Using [EFTModelsStudies](https://github.com/maxgalli/EFTModelsStudies) and [EFTScalingEquations](https://github.com/maxgalli/EFTScalingEquations/tree/differentials_220506) it is possible to perform preliminary studies of the models before fitting them with the full likelihood. Starting from only one yaml file like e.g. [this one](https://gitlab.cern.ch/magalli/DifferentialCombinationRun2/-/blob/master/metadata/SMEFT/220926Atlas.yml), one can use ```plot_shape_matt_predictions.py```, ```chi_square_fitter.py``` and ```pca``` performing these studies for a single decay channel or the combination.
+
+## Fits
+
+This part refers to what happens inside [DifferentialCombinationRun2](https://gitlab.cern.ch/magalli/DifferentialCombinationRun2) and partially overlaps with the docs in there.
+
 On 05.08.22 I started implementing the whole machinery to allow some kind of flexibility in performing fits for SMEFT coefficients. Since it is a bit convoluted, I try to write it down here so I will remember the main aspects.
 
 The whole business revolves around the concept of **MODEL** and **SUBMODEL**. The former refers to what is, in some sense, the output ot ```text2workspace.py``` while the latter refers to which of the parameters in MODEL we want to study. The config file for a MODEL can be found in ```DifferentialCombinationRun2/metadata/SMEFT``` with name ```MODEL.yml```. A MODEL can have multiple submodels, whose configurations will be found in the same path with the name ```MODEL_SUBMODEL.yml```.
