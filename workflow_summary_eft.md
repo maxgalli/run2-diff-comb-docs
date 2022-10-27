@@ -6,17 +6,33 @@ Using [EFTModelsStudies](https://github.com/maxgalli/EFTModelsStudies) and [EFTS
 
 ### Example
 
-Let's see an example that involves all of them, using a config model file located at ```/work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/221026Tutorial.yml```.
+Let's see an example that involves all of them, using a config model file located at ```/work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/220926Atlas.yml```.
 
 The first thing to do consists in taking a look at how the Wilson coefficients written in the config file change the pt spectrum. This can be done by running:
 ```
-python plot_shape_matt_predictions.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-prelim-SMEFT-topU3l_22_05_05 --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/EFTModelsStudies/SMEFT/FullStudies/CMS-prelim-SMEFT-topU3l_22_05_05-221026Tutorial --config-file /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/221026Tutorial.yml --channel hgg --study 1D
+python plot_shape_matt_predictions.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-prelim-SMEFT-topU3l_22_05_05 --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/EFTModelsStudies/SMEFT/FullStudies/CMS-prelim-SMEFT-topU3l_22_05_05-220926Atlas --config-file /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/220926Atlas.yml --channel hgg --study 1D
 ```
 by taking a look at the parabolas, one can also adjust the boundaries in the config file, avoiding to waste time in the bigger fits later! Note that with the option ```--channel hgg``` we specify that we want to perform the study using the equations derived for the bins of Hgg differential analysis in its phase space, since the rivet routines were used.
 
 After this, one can use ```chi_square_fitter.py``` to perform a series of 1D and 2D scans using a simple chi square. The chi square is built using the mus measured with the differential analyses and their uncertainties, along with the covarance matrix computed within Combine. To perform these scans and plot the results, one can run
 ```
-python chi_square_fitter.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-prelim-SMEFT-topU3l_22_05_05 --submodel-yaml /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/221026Tutorial.yml --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/EFTModelsStudies/SMEFT/FullStudies/CMS-prelim-SMEFT-topU3l_22_05_05-221026Tutorial --channels hgg
+python chi_square_fitter.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-prelim-SMEFT-topU3l_22_05_05 --submodel-yaml /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/220926Atlas.yml --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/EFTModelsStudies/SMEFT/FullStudies/CMS-prelim-SMEFT-topU3l_22_05_05-220926Atlas --channels hgg
+```
+
+If we notice that some of the scans are completely flat (like in this case), it means that we have fit too many parameters and we are not sensitive to some of them. In this case we can use the Principal Components Analysis:
+```
+python pca.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-prelim-SMEFT-topU3l_22_05_05 --model-yaml /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/220926Atlas.yml --channels hgg --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/EFTModelsStudies/SMEFT/FullStudies/CMS-prelim-SMEFT-topU3l_22_05_05-220926Atlas
+```
+this will plot the rotation matrices and create new directories in the path specified by ```--prediction-dir``` (refer to the repo README for more details). For this specific case we see that there are only three eigenvectors whose eigenvalues are large enough. At this point we can write a new model config file with the same format as the one before and repeat the process:
+
+```
+python plot_shape_matt_predictions.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-prelim-SMEFT-topU3l_22_05_05_rotated220926Atlashgg --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/EFTModelsStudies/SMEFT/FullStudies/CMS-prelim-SMEFT-topU3l_22_05_05_rotated220926Atlashgg-220926AtlasEV --config-file /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/220926AtlasEV.yml --channel hgg --study 1D
+```
+
+Then we can add another channel (if we have it) and perform again the PCA:
+
+```
+python pca.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-prelim-SMEFT-topU3l_22_05_05 --model-yaml /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/220926Atlas.yml --channels hgg hzz --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/EFTModelsStudies/SMEFT/FullStudies/CMS-prelim-SMEFT-topU3l_22_05_05-220926Atlas
 ```
 
 

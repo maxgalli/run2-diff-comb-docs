@@ -214,6 +214,26 @@ produce_workspace.py --datacard DifferentialCombinationRun2/Analyses/hig-20-015/
 submit_scans.py --model SM --observable Njets --category Htt  --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/Njets --output-dir DifferentialCombinationRun2/outputs/SM_scans
 ```
 
+#### HbbVBF
+
+*pT*
+
+```
+# first of all, we need to add the absolute path to the part that refers to HbbVBF
+# this is due to the fact that apparently if a nuisance is referred to as extArgs in the card, the path where we are calling text2workspace.py from is not appended, as it happens in every other case
+python DifferentialCombinationRun2/specific_scripts/add_prefix_to_HbbVBF.py
+
+# produce workspace
+produce_workspace.py --datacard DifferentialCombinationRun2/Analyses/hig-21-020/testModel/model_combined_withpaths.txt --model SM --observable smH_PTH --category HbbVBF
+
+# submit scans
+submit_scans.py --model SM --observable smH_PTH --category HbbVBF_asimov  --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/smH_PTH --output-dir outputs/SM_scans
+submit_scans.py --model SM --observable smH_PTH --category HbbVBF  --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/smH_PTH --output-dir outputs/SM_scans
+
+# plot
+plot_xs_scans.py --observable smH_PTH --input-dir outputs/SM_scans/smH_PTH --metadata-dir DifferentialCombinationRun2/metadata/xs_POIs/SM --output-dir outputs/SM_plots --singles HbbVBF
+```
+
 #### HggHZZ
 
 *pT*
@@ -343,6 +363,18 @@ submit_scans.py --model SM --observable smH_PTH --category HggHZZHWWHttHbb_asimo
 
 # plot
 plot_xs_scans.py --observable smH_PTH --input-dir DifferentialCombinationRun2/outputs/SM_scans/smH_PTH --metadata-dir DifferentialCombinationRun2/metadata/xs_POIs/SM --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/SM_plots --categories HggHZZHWWHttHbb Hgg HZZ HWW --singles Htt Hbb --systematic-bands HggHZZHWWHttHbb --config-file DifferentialCombinationRun2/metadata/xs_POIs/SM/smH_PTH/plot_config.yml
+```
+
+#### HggHZZHWWHttHbbVBF
+
+*pT*
+
+```
+# combine cards
+combineCards.py hgg=DifferentialCombinationRun2/Analyses/hig-19-016/outdir_differential_Pt/Datacard_13TeV_differential_Pt.txt hzz=DifferentialCombinationRun2/Analyses/hig-21-009/pT4l/hzz4l_all_13TeV_xs_pT4l_bin_v3.txt hww=DifferentialCombinationRun2/Analyses/hig-19-002/ptH_for_differential_combination/fullmodel_unreg.txt htt=DifferentialCombinationRun2/Analyses/hig-20-015/HiggsPt/HTT_Run2FinalCard_HiggsPt_NoReg.txt hbbvbf=DifferentialCombinationRun2/Analyses/hig-21-020/testModel/model_combined_withpaths.txt > DifferentialCombinationRun2/CombinedCards/smH_PTH/HggHZZHWWHttHbbVBF.txt
+
+# produce workspace
+
 ```
 
 #### HggInclusive
