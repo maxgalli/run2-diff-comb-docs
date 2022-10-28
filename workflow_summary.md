@@ -1,43 +1,8 @@
 # 3 - Signal Strength Fits
 
-## Preliminary Operations
+## Combine Datacards
 
-Here we summarize the prelimiary operations that have to be performed. In principle, all the outputs and results of these operations should already be included in the repo, but with report them here in case there are problems and they have to be repeated.
-
-### Hgg-Envelope
-The main problem that emerged with Hgg, especially during the SMEFT interpretation, is the amount of time that the envelope takes to run. It was thus decided to implement a suggestion by Andrea that consists in throwing away the pdfs that are not reasonable within the envelope. This is performed in the following way:
-
-```
-cd DifferentialCombinationRun2/Analyses/hig-19-016/outdir_differential_Pt
-
-python ../../../specific_scripts/hggMultiPdf.py --input Datacard_13TeV_differential_Pt.txt
-
-python ../../../specific_scripts/hggMultiPdf_step2.py
-``` 
-
-this will update the ROOT files containing the pdfs for the envelope.
-
-### HZZ
-
-In this case, we need to rename ```OutsideAcceptance``` to ```OutsideAcceptanceHZZ``` since it is treated differently between Hgg and HZZ. This is done by running, with python3:
-
-```
-python DifferentialCombinationRun2/specific_scripts/rename_HZZ_processes.py
-```
-
-### Get More Granular Theory Predictions
-
-This step is necessary in order to combine measurements with the binning at gen level which is not aligned. In order to do this, we first need a set of SM predictions with a more granular binning. To do this, we need to use the environment created also for the ```ttH``` predictions in TK context (based on [Thomas instructions](https://gist.github.com/threiten/2c4a10df9be5e5c5938717a3d33cf9bd#extracting-theoretical-predictions)) and, from inside ```DifferentialCombinationRun2/specific_scripts```, run 
-```
-python3 extractThPred.py -i /pnfs/psi.ch/cms/trivcat/store/user/gallim/DifferentialCombinationHugeSamples/dev_differential_fPA_SFsysT_signal_IA_18 -c /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/specific_scripts/splitConfig_Pt_2018_MoreGranular.yml -o /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/TheoreticalPredictions/production_modes/ggH_MoreGranular/theoryPred_Pt_2018_ggHMoreGranular.all --applyNNLOPSweights --dumpTheoryUnc --inpathOA /pnfs/psi.ch/cms/trivcat/store/user/gallim/DifferentialCombinationHugeSamples/dev_differential_fPA_SFsysT_signal_OA_18 --totalXS --proc GluGluHToGG
-```
-which will dump the necessary files in ```DifferentialCombinationRun2/TheoreticalPredictions/production_modes/ggH_MoreGranular```.
-
-## SM Plots
-
-### Combine Datacards
-
-### Convert Datacards to ROOT Workspaces
+## Convert Datacards to ROOT Workspaces
 
 Here we call ```text2workspace.py``` for each datacard that we need, either provided from the individual analyses (in this case, we will use the ones inside ```Analyses```) or combined (```CombinedCards```).
 
@@ -53,7 +18,7 @@ The script performs three main operations:
 - if the YAML file provided with ```--mapping``` exists, uses it to feed ```text2workspace```; if it does not, POIs are inferred from the datacard and a dictionary is dumped to the path provided to ```--mapping``` (this is done because the set of POIs is used also for the plotting and it is thus convenient to have it easily configurable); it is always advisable to provide a file instead of having it inferred from the datacard, given that we will change the POIs multiple times
 - ~~if the argument ```--combine-metadata-dir``` is provided, another YAML file is produced at \${combine-metadata-dir}/\${observable}/${category}.yml containing the metadata to be fed to ```submit_scans.py``` (see later)~~
 
-### Submit Scans
+## Submit Scans
 
 Here we perform scans in different ranges for the POIs, so they can later be used to build the NLLs.
 
@@ -71,9 +36,9 @@ It is worth mentioning the following about the arguments:
 - ```--input-dir``` is where the ROOT files containing the workspaces are stored
 - ```--output-dir``` is where the output files are stored: if not present, the script will create in it subdirectories like ```${output-dir}/${variable}/${category}```; if a subdirectory named ```${category}``` is already present, another called ```${category}-1, 2```, etc. will be created
 
-### Most updated wrapper commands per category (to be regularly updated)
+## Most updated wrapper commands per category (to be regularly updated)
 
-#### Hgg
+### Hgg
 
 *pT*
 
@@ -126,7 +91,7 @@ submit_scans.py --model SM --observable smH_PTJ0 --category Hgg_asimov_statonly 
 submit_scans.py --model SM --observable smH_PTJ0 --category Hgg  --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/smH_PTJ0 --output-dir DifferentialCombinationRun2/outputs/SM_scans
 ```
 
-#### HZZ
+### HZZ
 
 *pT*
 
@@ -165,7 +130,7 @@ submit_scans.py --model SM --observable yH --category HZZ_asimov --input-dir Dif
 plot_xs_scans.py --observable yH --input-dir outputs/SM_scans/yH --metadata-dir DifferentialCombinationRun2/metadata/xs_POIs/SM --output-dir outputs/SM_plots --categories HZZ
 ```
 
-#### HWW
+### HWW
 
 *pT*
 
@@ -192,7 +157,7 @@ produce_workspace.py --datacard DifferentialCombinationRun2/Analyses/hig-19-002/
 submit_scans.py --model SM --observable Njets --category HWW --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/Njets --output-dir outputs/SM_scans
 ```
 
-#### Htt
+### Htt
 
 *pT*
 
@@ -214,7 +179,7 @@ produce_workspace.py --datacard DifferentialCombinationRun2/Analyses/hig-20-015/
 submit_scans.py --model SM --observable Njets --category Htt  --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/Njets --output-dir DifferentialCombinationRun2/outputs/SM_scans
 ```
 
-#### HbbVBF
+### HbbVBF
 
 *pT*
 
@@ -234,7 +199,23 @@ submit_scans.py --model SM --observable smH_PTH --category HbbVBF  --input-dir D
 plot_xs_scans.py --observable smH_PTH --input-dir outputs/SM_scans/smH_PTH --metadata-dir DifferentialCombinationRun2/metadata/xs_POIs/SM --output-dir outputs/SM_plots --singles HbbVBF
 ```
 
-#### HggHZZ
+### HttBoost
+
+*pT*
+
+```
+# produce workspace
+produce_workspace.py --datacard DifferentialCombinationRun2/Analyses/hig-21-017/BoostedHTT_DiffXS_HiggsPt_NoOverLap/V2_Diff_dr0p5_hpt_2bin/hig-21-017_hpt.txt --model SM --observable smH_PTH --category HttBoost
+
+# submit scans
+submit_scans.py --model SM --observable smH_PTH --category HttBoost_asimov  --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/smH_PTH --output-dir outputs/SM_scans
+submit_scans.py --model SM --observable smH_PTH --category HttBoost  --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/smH_PTH --output-dir outputs/SM_scans
+
+# plot
+plot_xs_scans.py --observable smH_PTH --input-dir outputs/SM_scans/smH_PTH --metadata-dir DifferentialCombinationRun2/metadata/xs_POIs/SM --output-dir outputs/SM_plots --categories HttBoost
+```
+
+### HggHZZ
 
 *pT*
 
@@ -269,7 +250,7 @@ submit_scans.py --model SM --observable yH --category HggHZZ_statonly --input-di
 plot_xs_scans.py --observable yH --input-dir outputs/SM_scans/yH --metadata-dir DifferentialCombinationRun2/metadata/xs_POIs/SM --output-dir outputs/SM_plots --categories HggHZZ Hgg HZZ --systematic-bands HggHZZ
 ```
 
-#### HggHWW
+### HggHWW
 
 *Njets*
 
@@ -288,7 +269,7 @@ submit_scans.py --model SM --observable Njets --category HggHWW_statonly --input
 plot_xs_scans.py --observable Njets --input-dir outputs/SM_scans/Njets --metadata-dir DifferentialCombinationRun2/metadata/xs_POIs/SM --output-dir outputs/SM_plots --categories HggHWW Hgg HWW --systematic-bands HggHWW
 ```
 
-#### HggHZZHWW
+### HggHZZHWW
 
 *pT*
 
@@ -312,7 +293,7 @@ Note that before plotting a few actions might need to be performed:
 - it is not guaranteed that bin 0_5 will have a large enough range for the scan
 - bins 80_100 and 200_250 usually show a few points in the scan that are completely fucked; either shrink the scan range or remove them manually using ```DifferentialCombinationRun2/specific_scripts/debug_scans_output.py```
 
-#### HggHWWHtt
+### HggHWWHtt
 
 *Njets*
 
@@ -324,7 +305,7 @@ combineCards.py hgg=DifferentialCombinationRun2/Analyses/hig-19-016/outdir_diffe
 produce_workspace.py --datacard DifferentialCombinationRun2/CombinedCards/Njets/HggHWWHtt.txt --model SM --observable Njets --category HggHWWHtt
 ```
 
-#### HggHZZHWWHtt
+### HggHZZHWWHtt
 
 *pT*
 
@@ -346,7 +327,7 @@ plot_xs_scans.py --observable smH_PTH --input-dir outputs/SM_scans/smH_PTH --met
 
 Also in this case bins 80_100 and 200_250 usually show a few points in the scan that are completely fucked; either shrink the scan range or remove them manually using ```DifferentialCombinationRun2/specific_scripts/debug_scans_output.py```
 
-#### HggHZZHWWHttHbb
+### HggHZZHWWHttHbb
 
 *pT*
 
@@ -365,7 +346,7 @@ submit_scans.py --model SM --observable smH_PTH --category HggHZZHWWHttHbb_asimo
 plot_xs_scans.py --observable smH_PTH --input-dir DifferentialCombinationRun2/outputs/SM_scans/smH_PTH --metadata-dir DifferentialCombinationRun2/metadata/xs_POIs/SM --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/SM_plots --categories HggHZZHWWHttHbb Hgg HZZ HWW --singles Htt Hbb --systematic-bands HggHZZHWWHttHbb --config-file DifferentialCombinationRun2/metadata/xs_POIs/SM/smH_PTH/plot_config.yml
 ```
 
-#### HggHZZHWWHttHbbVBF
+### HggHZZHWWHttHbbVBF
 
 *pT*
 
@@ -377,7 +358,7 @@ combineCards.py hgg=DifferentialCombinationRun2/Analyses/hig-19-016/outdir_diffe
 
 ```
 
-#### HggInclusive
+### HggInclusive
 
 *pT*
 ```
@@ -390,7 +371,7 @@ produce_workspace.py --datacard DifferentialCombinationRun2/Analyses/hig-19-016/
 submit_scans.py --model SM --observable yH --category Hgginclusive --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/yH --output-dir outputs/SM_scans
 ```
 
-#### HZZinclusive
+### HZZinclusive
 
 *pT*
 
@@ -405,7 +386,7 @@ submit_scans.py --model SM --observable yH --category HggHZZinclusive_asimov --i
 submit_scans.py --model SM --observable yH --category HZZinclusive --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/yH --output-dir outputs/SM_scans
 ```
 
-#### HggHZZinclusive
+### HggHZZinclusive
 
 *pT*
 
@@ -433,11 +414,11 @@ submit_scans.py --model SM --observable yH --category HggHZZinclusive_statonly -
 plot_xs_scans.py --observable yH --input-dir outputs/SM_scans/yH --metadata-dir DifferentialCombinationRun2/metadata/xs_POIs/SM --output-dir outputs/SM_plots --categories HggHZZinclusive --no-final
 ```
 
-### Specific instructions per category (Hgg, Hzz, Hgg_Hzz, etc.)
+## Specific instructions per category (Hgg, Hzz, Hgg_Hzz, etc.)
 
 Ahahahahah porcodiqueldio ma come si fa a basare un'analisi su una mera serie di incomprensibili linee di comando chilometriche?!?!?
 
-#### Hgg
+### Hgg
 
 *pT*
 
@@ -472,7 +453,7 @@ cp ../Hgg_asimov/higgsCombineAsimovPostFit.GenerateOnly.mH125.38.123456.root .
 for poi in r_smH_PTH_15_20 r_smH_PTH_45_60 r_smH_PTH_170_200 r_smH_PTH_120_140 r_smH_PTH_80_100 r_smH_PTH_200_250 r_smH_PTH_GT450 r_smH_PTH_35_45 r_smH_PTH_350_450 r_smH_PTH_60_80 r_smH_PTH_250_350 r_smH_PTH_20_25 r_smH_PTH_140_170 r_smH_PTH_30_35 r_smH_PTH_0_5 r_smH_PTH_25_30 r_smH_PTH_5_10 r_smH_PTH_100_120 r_smH_PTH_10_15; do combineTool.py higgsCombineAsimovPostFit.GenerateOnly.mH125.38.123456.root -M MultiDimFit -m 125.38 --snapshotName "MultiDimFit" -t -1 -v -1 -P ${poi} --floatOtherPOIs 1 --name _SCAN_${poi}_Hgg --redefineSignalPOIs r_smH_PTH_15_20,r_smH_PTH_45_60,r_smH_PTH_170_200,r_smH_PTH_120_140,r_smH_PTH_80_100,r_smH_PTH_200_250,r_smH_PTH_GT450,r_smH_PTH_35_45,r_smH_PTH_350_450,r_smH_PTH_60_80,r_smH_PTH_250_350,r_smH_PTH_20_25,r_smH_PTH_140_170,r_smH_PTH_30_35,r_smH_PTH_0_5,r_smH_PTH_25_30,r_smH_PTH_5_10,r_smH_PTH_100_120,r_smH_PTH_10_15 --X-rtd MINIMIZER_freezeDisassociatedParams --cminDefaultMinimizerStrategy 0 --squareDistPoiStep --toysFile higgsCombineAsimovPostFit.GenerateOnly.mH125.38.123456.root --algo grid --freezeParameters allConstrainedNuisances --split-points 1 --points 30 --sub-opts="--mem=5G --partition=long --time=20:00:00" --job-mode slurm --task-name _SCAN_${poi}_Hgg_asimov; done
 ```
 
-#### HZZ
+### HZZ
 
 *pT*
 
@@ -516,7 +497,7 @@ hzz4l_2e2muS_13TeV_xs_rapidity4l_bin3_v3.txt hzz_YH_0p6_0p75_cat2e2mu_2018=datac
 idity4l_bin7_v3.txt hzz_YH_1p6_2p5_cat2e2mu_2018=datacard_2018/hzz4l_2e2muS_13TeV_xs_rapidity4l_bin8_v3.txt > yH_HZZ.txt
 ```
 
-#### HggHzz
+### HggHzz
 
 ````
 combineCards.py hgg=DifferentialCombinationRun2/Analyses/hig-19-016/outdir_differential_Pt/Datacard_13TeV_differential_Pt.txt hzz=DifferentialCombinationRun2/CombinedCards/smH_PTH/HZZ.txt > DifferentialCombinationRun2/CombinedCards/smH_PTH/Hgg_HZZ.txt
