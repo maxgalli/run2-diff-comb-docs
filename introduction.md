@@ -15,6 +15,15 @@ In order to (re)produce the analysis, the following repositories are necessary:
 
 ## Analyses
 
+Following are the analyses that are in the combination (or have been at some point) with the link to the repos:
+
+- Hgg: [HIG-19-016](https://gitlab.cern.ch/magalli/hig-19-016/-/tree/for_combination)
+- HZZ: [HIG-21-009](https://gitlab.cern.ch/magalli/hig-21-009/-/tree/Run2Combination)
+- HWW: [HIG-19-002](https://gitlab.cern.ch/magalli/hig-19-002/-/tree/Run2Combination)
+- Htt: [HIG-20-015](https://gitlab.cern.ch/magalli/hig-20-015/-/tree/Run2Combination_renamed_correctnames)
+- Hbb: [HIG-19-003](https://gitlab.cern.ch/magalli/hig-19-003)
+- HbbVBF: [HIG-21-020](https://gitlab.cern.ch/magalli/hig-21-020/-/tree/DifferentialsRun2)
+- HttBoost: [HIG-21-017](https://gitlab.cern.ch/magalli/hig-21-017/-/tree/DifferentialsRun2)
 
 ## Preliminary Operations
 
