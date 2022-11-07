@@ -377,6 +377,9 @@ combineCards.py hgg=DifferentialCombinationRun2/Analyses/hig-19-016/outdir_diffe
 python DifferentialCombinationRun2/specific_scripts/rename_HggHZZHWWHttHbbVBFHttBoost.py
 
 # produce workspace
+produce_workspace.py --datacard DifferentialCombinationRun2/CombinedCards/smH_PTH/HggHZZHWWHttHbbVBFHttBoost.txt --model SM --observable smH_PTH --category HggHZZHWWHttHbbVBFHttBoost
+
+# submit scans
 
 ```
 

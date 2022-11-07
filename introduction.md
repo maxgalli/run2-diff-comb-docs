@@ -13,6 +13,10 @@ In order to (re)produce the analysis, the following repositories are necessary:
 - Combine + CombineHarvester
 - an installation of [TK's framework](https://github.com/tklijnsma/differentialCombination2017) would be useful (even if maybe not necessary)
 
+Other useful links:
+
+- [EFT gist](https://gist.github.com/maxgalli/7407c634d7d5fa2ab5043ee0e434ba7c) with instrctions and links regarding EFT2Obs and MG
+
 ## Analyses
 
 Following are the analyses that are in the combination (or have been at some point) with the link to the repos:
@@ -70,11 +74,23 @@ python3 DifferentialCombinationRun2/specific_scripts/rename_Htt_histos.py
 ```
 
 ### HbbVBF
-In this case there is a bug in Combine that makes it forget to append the path for extArgs in the systematics area. We thus have to add the absolute path to all of them. This is done with:
+Two main problems have to be tackled here:
+- a bug in Combine that makes it forget to append the path for extArgs systematics area; due to this, it works when you run ```text2workspace.py``` from the same directory where the ROOT files are stored, but not from anywhere else
+- conventions are completely fucked (since they didn;t even know that they would have been part of a combination); this would be fine for signal strength measurements only but not for TK scenario
+
+Both problems are solved running
 ```
-python3 DifferentialCombinationRun2/specific_scripts/add_prefix_to_HbbVBF.py
+python DifferentialCombinationRun2/specific_scripts/rename_HbbVBF_processes.py
 ```
-this is committed in [DifferentialsRun2 branch](https://gitlab.cern.ch/magalli/hig-21-020/-/tree/DifferentialsRun2).
+a new datacard pointing to new ROOT files is created.
+
+We then need to prepend "hbb" to the bins, in order to make it usable also individually within TK interpretation.
+
+```
+combineCards.py hbb=DifferentialCombinationRun2/Analyses/hig-21-020/testModel/model_combined_withpaths.txt > DifferentialCombinationRun2/Analyses/hig-21-020/testModel/model_combined_forComb.txt
+```
+
+This is committed in [DifferentialsRun2 branch](https://gitlab.cern.ch/magalli/hig-21-020/-/tree/DifferentialsRun2).
 
 ### HttBoost
 Again the problem of ```OutsideAcceptance```. Run:
