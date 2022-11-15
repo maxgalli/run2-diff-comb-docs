@@ -374,7 +374,7 @@ plot_xs_scans.py --observable smH_PTH --input-dir outputs/SM_scans/smH_PTH --met
 combineCards.py hgg=DifferentialCombinationRun2/Analyses/hig-19-016/outdir_differential_Pt/Datacard_13TeV_differential_Pt.txt hzz=DifferentialCombinationRun2/Analyses/hig-21-009/pT4l/hzz4l_all_13TeV_xs_pT4l_bin_v3.txt hww=DifferentialCombinationRun2/Analyses/hig-19-002/ptH_for_differential_combination/fullmodel_unreg.txt htt=DifferentialCombinationRun2/Analyses/hig-20-015/HiggsPt/HTT_Run2FinalCard_HiggsPt_NoReg.txt hbbvbf=DifferentialCombinationRun2/Analyses/hig-21-020/testModel/model_combined_withpaths.txt httboost=DifferentialCombinationRun2/Analyses/hig-21-017/BoostedHTT_DiffXS_HiggsPt_NoOverLap/V2_Diff_dr0p5_hpt_2bin/hig-21-017_hpt.txt > DifferentialCombinationRun2/CombinedCards/smH_PTH/HggHZZHWWHttHbbVBFHttBoost.txt
 
 # then you need to somehow change every instance of $MASS with 125
-python DifferentialCombinationRun2/specific_scripts/rename_HggHZZHWWHttHbbVBFHttBoost.py
+python DifferentialCombinationRun2/specific_scripts/rename_HttBoost_related_cards.py
 
 # produce workspace
 produce_workspace.py --datacard DifferentialCombinationRun2/CombinedCards/smH_PTH/HggHZZHWWHttHbbVBFHttBoost.txt --model SM --observable smH_PTH --category HggHZZHWWHttHbbVBFHttBoost

@@ -38,7 +38,12 @@ python pca.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScal
 and fit:
 ```
 python chi_square_fitter.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-prelim-SMEFT-topU3l_22_05_05_rotated220926Atlashgghzz --submodel-yaml /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/220926AtlasEVhgghzz.yml --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/EFTModelsStudies/SMEFT/FullStudies/CMS-prelim-SMEFT-topU3l_22_05_05_rotated220926Atlashgghzz-220926AtlasEVhgghzz --channels hgg hzz
+
 ```
+python DifferentialCombinationRun2/specific_scripts/rename_HttBoost_related_cards.py
+```
+
+which can fail if the cards don't exist yet.
 
 
 ## Fits

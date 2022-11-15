@@ -84,19 +84,24 @@ python DifferentialCombinationRun2/specific_scripts/rename_HbbVBF_processes.py
 ```
 a new datacard pointing to new ROOT files is created.
 
-We then need to prepend "hbb" to the bins, in order to make it usable also individually within TK interpretation.
+We then need to prepend "hbb" to the bins, in order to make it usable also individually within SMEFT interpretation.
 
 ```
-combineCards.py hbb=DifferentialCombinationRun2/Analyses/hig-21-020/testModel/model_combined_withpaths.txt > DifferentialCombinationRun2/Analyses/hig-21-020/testModel/model_combined_forComb.txt
+combineCards.py hbbvbf=DifferentialCombinationRun2/Analyses/hig-21-020/testModel/model_combined_withpaths.txt > DifferentialCombinationRun2/Analyses/hig-21-020/testModel/model_combined_forComb.txt
 ```
 
 This is committed in [DifferentialsRun2 branch](https://gitlab.cern.ch/magalli/hig-21-020/-/tree/DifferentialsRun2).
+
+Note that as it is now (10.11.2022), we don't have to worry about adding it to TK interpretation since the predicitons is in bins of 10 instead of 5.
 
 ### HttBoost
 Again the problem of ```OutsideAcceptance```. Run:
 ```
 python3 DifferentialCombinationRun2/specific_scripts/rename_HttBoost_histos.py
 ```
+
+An important note: inside the datacard, the mass is parametrized and needs to be 125. When combining (see next chapter) we hardcode it to 125. Note that if we do this on the individual card and then use it as an input to ```combineCards.py``` this won't work becasue when it is not parametrized that fucking shit of Combine adds the prefix, so the path will be a weird non existing thing.
+This stuff is done using:
 
 ### Get More Granular Theory Predictions
 
