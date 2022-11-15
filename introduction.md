@@ -101,7 +101,10 @@ python3 DifferentialCombinationRun2/specific_scripts/rename_HttBoost_histos.py
 ```
 
 An important note: inside the datacard, the mass is parametrized and needs to be 125. When combining (see next chapter) we hardcode it to 125. Note that if we do this on the individual card and then use it as an input to ```combineCards.py``` this won't work becasue when it is not parametrized that fucking shit of Combine adds the prefix, so the path will be a weird non existing thing.
-This stuff is done using:
+To hardcode 125 in the proper cards run:
+```
+python DifferentialCombinationRun2/specific_scripts/rename_HttBoost_related_cards.py
+```
 
 ### Get More Granular Theory Predictions
 
