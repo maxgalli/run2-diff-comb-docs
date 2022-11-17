@@ -343,7 +343,7 @@ submit_scans.py --model SM --observable yH --category Hgg  --input-dir Different
 
 ```
 # produce workspace
-produce_workspace.py --datacard DifferentialCombinationRun2/Analyses/hig-21-009/forCombination/yH_HZZ.txt --model SM --observable yH --category HZZ
+produce_workspace.py --datacard DifferentialCombinationRun2/Analyses/hig-21-009/rapidity4l/hzz4l_all_13TeV_xs_rapidity4l_bin_v3.txt --model SM --observable yH --category HZZ
 
 # submit scans (only locally)
 submit_scans.py --model SM --observable yH --category HZZ --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/yH --output-dir outputs/SM_scans
@@ -360,7 +360,7 @@ plot_xs_scans.py --observable yH --input-dir outputs/SM_scans/yH --metadata-dir 
 
 ```
 # combine cards
-combineCards.py hgg=DifferentialCombinationRun2/Analyses/hig-19-016/outdir_differential_AbsRapidityFine/Datacard_13TeV_differential_AbsRapidityFine.txt hzz=DifferentialCombinationRun2/Analyses/hig-21-009/forCombination/yH_HZZ.txt > DifferentialCombinationRun2/CombinedCards/yH/HggHZZ.txt
+combineCards.py hgg=DifferentialCombinationRun2/Analyses/hig-19-016/outdir_differential_AbsRapidityFine/Datacard_13TeV_differential_AbsRapidityFine.txt hzz=DifferentialCombinationRun2/Analyses/hig-21-009/rapidity4l/hzz4l_all_13TeV_xs_rapidity4l_bin_v3.txt > DifferentialCombinationRun2/CombinedCards/yH/HggHZZ.txt
 
 # produce workspace
 produce_workspace.py --datacard DifferentialCombinationRun2/CombinedCards/yH/HggHZZ.txt --model SM --observable yH --category HggHZZ

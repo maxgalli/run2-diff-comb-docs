@@ -48,7 +48,7 @@ this will update the ROOT files containing the pdfs for the envelope.
 
 ### HZZ
 
-In this case, we need to rename ```OutsideAcceptance``` to ```OutsideAcceptanceHZZ``` since it is treated differently between Hgg and HZZ. This is done by running, with python3:
+In this case, we need to rename ```OutsideAcceptance``` to ```OutsideAcceptanceHZZ``` since it is treated differently between Hgg and HZZ.
 
 ```
 python DifferentialCombinationRun2/specific_scripts/rename_HZZ_processes.py
