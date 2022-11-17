@@ -227,7 +227,7 @@ python DifferentialCombinationRun2/specific_scripts/rename_HttBoost_related_card
 produce_workspace.py --datacard DifferentialCombinationRun2/CombinedCards/smH_PTH/HggHZZHWWHttHbbVBFHttBoost.txt --model SM --observable smH_PTH --category HggHZZHWWHttHbbVBFHttBoost
 
 # submit scans
-
+submit_scans.py --model SM --observable smH_PTH --category HggHZZHWWHttHbbVBFHttBoost_asimov  --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/smH_PTH --output-dir outputs/SM_scans
 ```
 
 *HggHZZInclusive*
@@ -347,9 +347,7 @@ produce_workspace.py --datacard DifferentialCombinationRun2/Analyses/hig-21-009/
 
 # submit scans (only locally)
 submit_scans.py --model SM --observable yH --category HZZ --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/yH --output-dir outputs/SM_scans
-
 submit_scans.py --model SM --observable yH --category HZZ_statonly --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/yH --output-dir outputs/SM_scans
-
 submit_scans.py --model SM --observable yH --category HZZ_asimov --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/yH --output-dir outputs/SM_scans
 
 # plot
@@ -367,7 +365,6 @@ produce_workspace.py --datacard DifferentialCombinationRun2/CombinedCards/yH/Hgg
 
 # submit scans
 submit_scans.py --model SM --observable yH --category HggHZZ --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/yH --output-dir outputs/SM_scans
-
 submit_scans.py --model SM --observable yH --category HggHZZ_statonly --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/yH --output-dir outputs/SM_scans --global-fit-file /work/gallim/DifferentialCombination_home/outputs/SM_scans/yH/HggHZZ/higgsCombine_POSTFIT_HggHZZ.MultiDimFit.mH125.38.root
 
 # plot
@@ -418,6 +415,79 @@ submit_scans.py --model SM --observable smH_PTJ0 --category Hgg_asimov_statonly 
 submit_scans.py --model SM --observable smH_PTJ0 --category Hgg  --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/smH_PTJ0 --output-dir DifferentialCombinationRun2/outputs/SM_scans
 ```
 
+### mjj
+
+*Hgg*
+
+```
+# produce workspace
+produce_workspace.py --datacard DifferentialCombinationRun2/Analyses/hig-19-016/outdir_differential_MjjJets4p7NewBins/Datacard_13TeV_differential_MjjJets4p7NewBins.txt --model SM --observable mjj --category Hgg
+
+# submit scans
+submit_scans.py --model SM --observable mjj --category Hgg_asimov  --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/mjj --output-dir outputs/SM_scans
+submit_scans.py --model SM --observable mjj --category Hgg  --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/mjj --output-dir outputs/SM_scans
+```
+
+*HZZ*
+
+```
+# produce workspace
+produce_workspace.py --datacard DifferentialCombinationRun2/Analyses/hig-21-009/mjj/hzz4l_all_13TeV_xs_mjj_bin_v3.txt --model SM --observable mjj --category HZZ
+
+# submit scans
+submit_scans.py --model SM --observable mjj --category HZZ --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/mjj --output-dir outputs/SM_scans
+```
+
+*HggHZZ*
+
+```
+# combine cards
+combineCards.py hgg=DifferentialCombinationRun2/Analyses/hig-19-016/outdir_differential_MjjJets4p7NewBins/Datacard_13TeV_differential_MjjJets4p7NewBins.txt hzz=DifferentialCombinationRun2/Analyses/hig-21-009/mjj/hzz4l_all_13TeV_xs_mjj_bin_v3.txt > DifferentialCombinationRun2/CombinedCards/mjj/HggHZZ.txt
+
+# produce workspace
+produce_workspace.py --datacard DifferentialCombinationRun2/CombinedCards/mjj/HggHZZ.txt --model SM --observable mjj --category HggHZZ
+
+# submit scans
+submit_scans.py --model SM --observable mjj --category HggHZZ_asimov --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/mjj --output-dir outputs/SM_scans
+submit_scans.py --model SM --observable mjj --category HggHZZ --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/mjj --output-dir outputs/SM_scans
+```
+
+### DEtajj
+
+*Hgg*
+
+```
+# produce workspace
+produce_workspace.py --datacard DifferentialCombinationRun2/Analyses/hig-19-016/outdir_differential_AbsDeltaEtaJ1J2Jets4p7/Datacard_13TeV_differential_AbsDeltaEtaJ1J2Jets4p7.txt --model SM --observable DEtajj --category Hgg
+
+# submit scans
+submit_scans.py --model SM --observable DEtajj --category Hgg_asimov --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/DEtajj --output-dir outputs/SM_scans
+submit_scans.py --model SM --observable DEtajj --category Hgg --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/DEtajj --output-dir outputs/SM_scans
+```
+
+*HZZ*
+
+```
+# produce workspace
+produce_workspace.py --datacard DifferentialCombinationRun2/Analyses/hig-21-009/absdetajj/hzz4l_all_13TeV_xs_absdetajj_bin_v3.txt --model SM --observable DEtajj --category HZZ
+
+# submit scans
+submit_scans.py --model SM --observable DEtajj --category HZZ_asimov --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/DEtajj --output-dir outputs/SM_scans
+submit_scans.py --model SM --observable DEtajj --category HZZ --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/DEtajj --output-dir outputs/SM_scans
+```
+
+*HggHZZ*
+
+```
+# combine cards
+combineCards.py hgg=DifferentialCombinationRun2/Analyses/hig-19-016/outdir_differential_AbsDeltaEtaJ1J2Jets4p7/Datacard_13TeV_differential_AbsDeltaEtaJ1J2Jets4p7.txt hzz=DifferentialCombinationRun2/Analyses/hig-21-009/absdetajj/hzz4l_all_13TeV_xs_absdetajj_bin_v3.txt > DifferentialCombinationRun2/CombinedCards/DEtajj/HggHZZ.txt
+
+# produce workspace
+produce_workspace.py --datacard DifferentialCombinationRun2/CombinedCards/DEtajj/HggHZZ.txt --model SM --observable DEtajj --category HggHZZ
+
+# submit scans
+
+```
 
 ## Specific instructions per category (Hgg, Hzz, Hgg_Hzz, etc.) - not sure if this is ever going to be useful
 
