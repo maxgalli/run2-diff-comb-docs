@@ -415,6 +415,27 @@ submit_scans.py --model SM --observable smH_PTJ0 --category Hgg_asimov_statonly 
 submit_scans.py --model SM --observable smH_PTJ0 --category Hgg  --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/smH_PTJ0 --output-dir DifferentialCombinationRun2/outputs/SM_scans
 ```
 
+*HZZ*
+
+```
+# produce workspace
+produce_workspace.py --datacard DifferentialCombinationRun2/Analyses/hig-21-009/pTj1/hzz4l_all_13TeV_xs_pTj1_bin_v3.txt --model SM --observable smH_PTJ0 --category HZZ
+
+# submit scans
+submit_scans.py --model SM --observable smH_PTJ0 --category HZZ_asimov --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/smH_PTJ0 --output-dir outputs/SM_scans
+submit_scans.py --model SM --observable smH_PTJ0 --category HZZ --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/smH_PTJ0 --output-dir outputs/SM_scans
+```
+
+*Htt*
+
+```
+# produce workspace
+produce_workspace.py --datacard DifferentialCombinationRun2/Analyses/hig-20-015/LeadingJetPt/HTT_Run2FinalCard_LeadingJetPt_Reg.txt --model SM --observable smH_PTJ0 --category Htt
+
+# submit scans
+
+```
+
 ### mjj
 
 *Hgg*

@@ -5,7 +5,7 @@
 
 In order to (re)produce the analysis, the following repositories are necessary:
 
-- [main repo](https://gitlab.cern.ch/magalli/DifferentialCombinationRun2)
+- [main repo](https://gitlab.cern.ch/magalli/differentialcombinationrun2-2)
 - [plotting package](https://github.com/maxgalli/DifferentialCombinationPostProcess)
 - [EFTModelsStudies](https://github.com/maxgalli/EFTModelsStudies)
 - [EFTScalingEquations](https://github.com/maxgalli/EFTScalingEquations/tree/differentials_220506)
@@ -70,7 +70,7 @@ after that, the changes were meaningfully committed and pushed to [this branch](
 
 In this case, [my branch](https://gitlab.cern.ch/magalli/hig-20-015/-/tree/Run2Combination_renamed_correctnames) mostly takes care of adding large files with git lfs and again changing the processes called ```OutsideAcceptance```.
 ```
-python3 DifferentialCombinationRun2/specific_scripts/rename_Htt_histos.py
+python DifferentialCombinationRun2/specific_scripts/rename_Htt_histos.py
 ```
 
 ### HbbVBF

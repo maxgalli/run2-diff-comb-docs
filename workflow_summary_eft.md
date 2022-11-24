@@ -85,6 +85,58 @@ plot_SMEFT_scans.py --how submodel --model 220804Mod --submodel DifferentialComb
 ```
 
 
+## Very detailed example of a full study following pruning and PCA with combination
 
+The first thing to do consists in picking a handful of operators directly from the equations.
 
-## Most updated wrapper commands per category (to be regularly updated)
+```
+cd /work/gallim/DifferentialCombination_home/EFTScalingEquations
+python scripts_differentials/yaml_from_pruning.py --prediction-dir equations/CMS-prelim-SMEFT-topU3l_22_05_05 --output-file /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/221121PruneNoCP.yml --new-dir --threshold 0.0001
+```
+
+this command will dump a config file at the path specified by ```--output-file``` and a new directory at ```equations/CMS-prelim-SMEFT-topU3l_22_05_05_pruned0p0001``` keeping only those parts of the equations for which the coefficient is above the specified threshold. We can now modify the config file on our needs.
+
+Then we need to perform PCA and plot the relevant information.
+```
+cd /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/EFTModelsStudies/SMEFT/FullStudies
+mkdir CMS-prelim-SMEFT-topU3l_22_05_05_pruned0p0001-221121PruneNoCP
+```
+
+this is important in order not to get lost with the naming convention. We create a directory where the scheme is ```$name of prediction dir$-$name of config file$```
+
+First plot parabolas just to understand what we are doing:
+```
+python plot_shape_matt_predictions.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-prelim-SMEFT-topU3l_22_05_05_pruned0p0001 --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/EFTModelsStudies/SMEFT/FullStudies/CMS-prelim-SMEFT-topU3l_22_05_05_pruned0p0001-221121PruneNoCP --config-file /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/221121PruneNoCP.yml --channels hgg hzz hww htt hbbvbf httboost --skip-spectra
+```
+
+then PCA:
+
+```
+python pca.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-prelim-SMEFT-topU3l_22_05_05_pruned0p0001 --model-yaml /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/221121PruneNoCP.yml --channels hgg hzz hww htt hbbvbf httboost --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/EFTModelsStudies/SMEFT/FullStudies/CMS-prelim-SMEFT-topU3l_22_05_05_pruned0p0001-221121PruneNoCP
+```
+note that a new directory with new predictions has been created at ```/work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-prelim-SMEFT-topU3l_22_05_05_pruned0p0001_rotated221121PruneNoCPhgghzzhwwhtthbbvbfhttboost```. The naming convention tries to incorporate the original basis (```CMS-prelim-SMEFT-topU3l_22_05_05_pruned0p0001```) the config file used (```rotated221121PruneNoCP```) and the list of decay channels that we spacified when doing the PCA (```hgghzzhwwhtthbbvbfhttboost```).
+
+We can now prune once again with:
+```
+python scripts_differentials/yaml_from_pruning.py --prediction-dir equations/CMS-prelim-SMEFT-topU3l_22_05_05_pruned0p0001_rotated221121PruneNoCPhgghzzhwwhtthbbvbfhttboost --output-file /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/221121PruneNoCPEVhgghzzhwwhtthbbvbfhttboost.yml --new-dir --threshold 0.0001
+```
+
+then comment out the parameters in the new config file **according to which ones have higher eigenvalue**.
+
+```
+cd /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/EFTModelsStudies/SMEFT/FullStudies
+mkdir CMS-prelim-SMEFT-topU3l_22_05_05_pruned0p0001_rotated221121PruneNoCPhgghzzhwwhtthbbvbfhttboost_pruned0p0001-221121PruneNoCPEVhgghzzhwwhtthbbvbfhttboost
+```
+
+and repeat the procedure to study the parabolas:
+```
+python plot_shape_matt_predictions.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-prelim-SMEFT-topU3l_22_05_05_pruned0p0001_rotated221121PruneNoCPhgghzzhwwhtthbbvbfhttboost_pruned0p0001 --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/EFTModelsStudies/SMEFT/FullStudies/CMS-prelim-SMEFT-topU3l_22_05_05_pruned0p0001_rotated221121PruneNoCPhgghzzhwwhtthbbvbfhttboost_pruned0p0001-221121PruneNoCPEVhgghzzhwwhtthbbvbfhttboost --config-file /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/221121PruneNoCPEVhgghzzhwwhtthbbvbfhttboost.yml --channels hgg hzz hww htt hbbvbf httboost --skip-spectra
+```
+
+After fine tuning the ranges, we can proceed with a chi square fit:
+```
+time python chi_square_fitter.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-prelim-SMEFT-topU3l_22_05_05_pruned0p0001_rotated221121PruneNoCPhgghzzhwwhtthbbvbfhttboost_pruned0p0001 --submodel-yaml /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/221121PruneNoCPEVhgghzzhwwhtthbbvbfhttboost.yml --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/EFTModelsStudies/SMEFT/FullStudies/CMS-prelim-SMEFT-topU3l_22_05_05_pruned0p0001_rotated221121PruneNoCPhgghzzhwwhtthbbvbfhttboost_pruned0p0001-221121PruneNoCPEVhgghzzhwwhtthbbvbfhttboost --channels hgg hzz hww htt hbbvbf httboost --multiprocess --skip2D
+```
+
+**A quick note**: while writing this part, I also tried to do the same without pruning (i.e. using the original equations in both cases) and there seem to be almost no difference. I can probably skip that part and use the ```EFTScalingEquations``` scripts just to select the operators.
+
