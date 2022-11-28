@@ -436,6 +436,30 @@ produce_workspace.py --datacard DifferentialCombinationRun2/Analyses/hig-20-015/
 
 ```
 
+*HttBoost*
+
+```
+# produce workspace
+produce_workspace.py --datacard DifferentialCombinationRun2/Analyses/hig-21-017/BoostedHTT_DiffXS_LeadJetPt_NoOverLap/V1_diff_jpt_dr0p5/hig-21-017_jpt.txt --model SM --observable smH_PTJ0 --category HttBoost
+
+# submit scans
+submit_scans.py --model SM --observable smH_PTH --category HttBoost --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/smH_PTH --output-dir outputs/SM_scans
+```
+
+*HggHZZHttBoost*
+
+```
+# combine cards
+combineCards.py hgg=DifferentialCombinationRun2/Analyses/hig-19-016/outdir_differential_Jet2p5Pt0/Datacard_13TeV_differential_Jet2p5Pt0.txt hzz=DifferentialCombinationRun2/Analyses/hig-21-009/pTj1/hzz4l_all_13TeV_xs_pTj1_bin_v3.txt httboost=DifferentialCombinationRun2/Analyses/hig-21-017/BoostedHTT_DiffXS_LeadJetPt_NoOverLap/V1_diff_jpt_dr0p5/hig-21-017_jpt.txt > DifferentialCombinationRun2/CombinedCards/smH_PTJ0/HggHZZHttBoost.txt
+
+# produce workspace
+produce_workspace.py --datacard DifferentialCombinationRun2/CombinedCards/smH_PTJ0/HggHZZHttBoost.txt --model SM --observable smH_PTJ0 --category HggHZZHttBoost
+
+# submit scans
+submit_scans.py --model SM --observable smH_PTJ0 --category HggHZZHttBoost_asimov --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/smH_PTJ0 --output-dir outputs/SM_scans
+submit_scans.py --model SM --observable smH_PTJ0 --category HggHZZHttBoost --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/smH_PTJ0 --output-dir outputs/SM_scans
+```
+
 ### mjj
 
 *Hgg*
@@ -473,6 +497,7 @@ submit_scans.py --model SM --observable mjj --category HggHZZ_asimov --input-dir
 submit_scans.py --model SM --observable mjj --category HggHZZ --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/mjj --output-dir outputs/SM_scans
 ```
 
+
 ### DEtajj
 
 *Hgg*
@@ -508,6 +533,44 @@ produce_workspace.py --datacard DifferentialCombinationRun2/CombinedCards/DEtajj
 
 # submit scans
 
+```
+
+### TauCJ
+
+*Hgg*
+
+```
+# produce workspace
+produce_workspace.py --datacard DifferentialCombinationRun2/Analyses/hig-19-016/outdir_differential_TauCJets4p7/Datacard_13TeV_differential_TauCJets4p7.txt --model SM --observable TauCJ --category Hgg
+
+# submit scans
+submit_scans.py --model SM --observable TauCJ --category Hgg_asimov --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/TauCJ --output-dir outputs/SM_scans
+submit_scans.py --model SM --observable TauCJ --category Hgg --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/TauCJ --output-dir outputs/SM_scans
+```
+
+*HZZ*
+
+```
+# produce workspace
+produce_workspace.py --datacard DifferentialCombinationRun2/Analyses/hig-21-009/TCjmax/hzz4l_all_13TeV_xs_TCjmax_bin_v3.txt --model SM --observable TauCJ --category HZZ
+
+# submit scans
+submit_scans.py --model SM --observable TauCJ --category HZZ_asimov --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/TauCJ --output-dir outputs/SM_scans
+submit_scans.py --model SM --observable TauCJ --category HZZ --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/TauCJ --output-dir outputs/SM_scans
+```
+
+*HggHZZ*
+
+```
+# combine cards
+combineCards.py hgg=DifferentialCombinationRun2/Analyses/hig-19-016/outdir_differential_TauCJets4p7/Datacard_13TeV_differential_TauCJets4p7.txt hzz=DifferentialCombinationRun2/Analyses/hig-21-009/TCjmax/hzz4l_all_13TeV_xs_TCjmax_bin_v3.txt > DifferentialCombinationRun2/CombinedCards/TauCJ/HggHZZ.txt
+
+# produce workspace
+produce_workspace.py --datacard DifferentialCombinationRun2/CombinedCards/TauCJ/HggHZZ.txt --model SM --observable TauCJ --category HggHZZ
+
+# submit scans
+submit_scans.py --model SM --observable TauCJ --category HggHZZ_asimov --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/TauCJ --output-dir outputs/SM_scans
+submit_scans.py --model SM --observable TauCJ --category HggHZZ --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/TauCJ --output-dir outputs/SM_scans
 ```
 
 ## Specific instructions per category (Hgg, Hzz, Hgg_Hzz, etc.) - not sure if this is ever going to be useful
