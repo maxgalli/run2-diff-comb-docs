@@ -324,7 +324,11 @@ combineCards.py hgg=DifferentialCombinationRun2/Analyses/hig-19-016/outdir_diffe
 # produce workspace
 
 # submit scans
+submit_scans.py --model SM --observable Njets --category HggHZZHWWHtt_asimov --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/Njets --output-dir outputs/SM_scans
 submit_scans.py --model SM --observable Njets --category HggHZZHWWHtt --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/Njets --output-dir outputs/SM_scans
+
+# plot
+plot_xs_scans.py --observable Njets --input-dir outputs/SM_scans/Njets --metadata-dir DifferentialCombinationRun2/metadata/xs_POIs/SM --output-dir outputs/SM_plots --categories HggHZZHWWHtt Hgg HZZ HWW --singles Htt --config-file DifferentialCombinationRun2/metadata/xs_POIs/SM/Njets/plot_config.yml
 ```
 
 ### yH
@@ -368,7 +372,7 @@ submit_scans.py --model SM --observable yH --category HggHZZ --input-dir Differe
 submit_scans.py --model SM --observable yH --category HggHZZ_statonly --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/yH --output-dir outputs/SM_scans --global-fit-file /work/gallim/DifferentialCombination_home/outputs/SM_scans/yH/HggHZZ/higgsCombine_POSTFIT_HggHZZ.MultiDimFit.mH125.38.root
 
 # plot
-plot_xs_scans.py --observable yH --input-dir outputs/SM_scans/yH --metadata-dir DifferentialCombinationRun2/metadata/xs_POIs/SM --output-dir outputs/SM_plots --categories HggHZZ Hgg HZZ --systematic-bands HggHZZ
+plot_xs_scans.py --observable yH --input-dir outputs/SM_scans/yH --metadata-dir DifferentialCombinationRun2/metadata/xs_POIs/SM --output-dir outputs/SM_plots --categories HggHZZ Hgg HZZ --config-file DifferentialCombinationRun2/metadata/xs_POIs/SM/yH/plot_config.yml
 ```
 
 *HggInclusive*
@@ -458,6 +462,9 @@ produce_workspace.py --datacard DifferentialCombinationRun2/CombinedCards/smH_PT
 # submit scans
 submit_scans.py --model SM --observable smH_PTJ0 --category HggHZZHttBoost_asimov --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/smH_PTJ0 --output-dir outputs/SM_scans
 submit_scans.py --model SM --observable smH_PTJ0 --category HggHZZHttBoost --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/smH_PTJ0 --output-dir outputs/SM_scans
+
+# plot
+plot_xs_scans.py --observable smH_PTJ0 --input-dir outputs/SM_scans/smH_PTJ0 --metadata-dir DifferentialCombinationRun2/metadata/xs_POIs/SM --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/SM_plots --categories HggHZZHttBoost Hgg HZZ --singles HttBoost --config-file DifferentialCombinationRun2/metadata/xs_POIs/SM/smH_PTJ0/plot_config.yml
 ```
 
 ### mjj
@@ -495,6 +502,9 @@ produce_workspace.py --datacard DifferentialCombinationRun2/CombinedCards/mjj/Hg
 # submit scans
 submit_scans.py --model SM --observable mjj --category HggHZZ_asimov --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/mjj --output-dir outputs/SM_scans
 submit_scans.py --model SM --observable mjj --category HggHZZ --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/mjj --output-dir outputs/SM_scans
+
+# plot
+plot_xs_scans.py --observable mjj --input-dir outputs/SM_scans/mjj --metadata-dir DifferentialCombinationRun2/metadata/xs_POIs/SM --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/SM_plots --categories HggHZZ Hgg HZZ --config-file DifferentialCombinationRun2/metadata/xs_POIs/SM/mjj/plot_config.yml
 ```
 
 
@@ -533,6 +543,9 @@ produce_workspace.py --datacard DifferentialCombinationRun2/CombinedCards/DEtajj
 
 # submit scans
 
+
+# plot
+plot_xs_scans.py --observable DEtajj --input-dir outputs/SM_scans/DEtajj --metadata-dir DifferentialCombinationRun2/metadata/xs_POIs/SM --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/SM_plots --categories HggHZZ Hgg HZZ --config-file DifferentialCombinationRun2/metadata/xs_POIs/SM/DEtajj/plot_config.yml
 ```
 
 ### TauCJ
@@ -571,6 +584,9 @@ produce_workspace.py --datacard DifferentialCombinationRun2/CombinedCards/TauCJ/
 # submit scans
 submit_scans.py --model SM --observable TauCJ --category HggHZZ_asimov --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/TauCJ --output-dir outputs/SM_scans
 submit_scans.py --model SM --observable TauCJ --category HggHZZ --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/TauCJ --output-dir outputs/SM_scans
+
+# plot
+plot_xs_scans.py --observable TauCJ --input-dir outputs/SM_scans/TauCJ --metadata-dir DifferentialCombinationRun2/metadata/xs_POIs/SM --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/SM_plots --categories HggHZZ Hgg HZZ --config-file DifferentialCombinationRun2/metadata/xs_POIs/SM/TauCJ/plot_config.yml
 ```
 
 ## Specific instructions per category (Hgg, Hzz, Hgg_Hzz, etc.) - not sure if this is ever going to be useful
