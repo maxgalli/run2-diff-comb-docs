@@ -84,3 +84,118 @@ A bit weird, but still. Plot the heatmap of the EXPECTED and the CLs of OBSERVED
 ```
 plot_TK_scans.py --model yukawa_coupdep --input-dir /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/outputs/TK_scans/Yukawa_NOTscalingbbH_couplingdependentBRs --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/TK_plots --categories HggHZZHWWHtt --combination HggHZZHWWHtt --expected-bkg
 ```
+
+## Most recently updated commands
+
+### Yukawa_NOTscalingbbH_couplingdependentBRs
+
+*HggHZZHWWHtt*
+
+```
+# produce workspace
+produce_TK_workspace.py --model Yukawa_NOTscalingbbH_couplingdependentBRs --category HggHZZHWWHtt
+
+# submit scans
+submit_TK_scans.py --model Yukawa_NOTscalingbbH_couplingdependentBRs --category HggHZZHWWHtt_asimov --input-dir /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/CombinedWorkspaces/TK --output-dir outputs/TK_scans
+```
+
+*Plots*
+```
+# Expected only
+plot_TK_scans.py --model yukawa_coupdep --input-dir /work/gallim/DifferentialCombination_home/outputs/TK_scans/Yukawa_NOTscalingbbH_couplingdependentBRs --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/TK_plots/yukawa_coupdep --categories HggHZZHWWHtt --combination HggHZZHWWHtt --expected
+```
+
+### Yukawa_NOTscalingbbH_floatingBRs
+
+*HggHZZHWWHtt*
+
+```
+# produce workspace
+produce_TK_workspace.py --model Yukawa_NOTscalingbbH_floatingBRs --category HggHZZHWWHtt
+
+# submit scans
+submit_TK_scans.py --model Yukawa_NOTscalingbbH_floatingBRs --category HggHZZHWWHtt_asimov --input-dir /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/CombinedWorkspaces/TK --output-dir outputs/TK_scans
+```
+
+*Plots*
+```
+# Expected only
+plot_TK_scans.py --model yukawa_floatingBR --input-dir /work/gallim/DifferentialCombination_home/outputs/TK_scans/Yukawa_NOTscalingbbH_floatingBRs --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/TK_plots/yukawa_floatingBR --categories HggHZZHWWHtt --combination HggHZZHWWHtt --expected
+
+```
+
+### Top_scalingttH_couplingdependentBRs
+
+*HggHZZHWWHttHttBoost*
+
+```
+# produce workspace
+produce_TK_workspace.py --model Top_scalingttH_couplingdependentBRs --category HggHZZHWWHttHttBoost
+
+# submit scans
+submit_TK_scans.py --model Top_scalingttH_couplingdependentBRs --category HggHZZHWWHttHttBoost_asimov --input-dir /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/CombinedWorkspaces/TK --output-dir outputs/TK_scans
+```
+
+*Plots*
+```
+# Expected only
+plot_TK_scans.py --model top_coupdep_ctcg --input-dir /work/gallim/DifferentialCombination_home/outputs/TK_scans/Top_scalingttH_couplingdependentBRs --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/TK_plots/top_coupdep_ctcg --categories HggHZZHWWHttHttBoost --combination HggHZZHWWHttHttBoost --expected
+```
+
+
+### Top_scalingttH_floatingBRs
+
+*HggHZZHWWHttHttBoost*
+
+```
+# produce workspace
+produce_TK_workspace.py --model Top_scalingttH_floatingBRs --category HggHZZHWWHttHttBoost
+
+# submit scans
+submit_TK_scans.py --model Top_scalingttH_floatingBRs --category HggHZZHWWHttHttBoost_asimov --input-dir /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/CombinedWorkspaces/TK --output-dir outputs/TK_scans
+```
+
+*Plots*
+```
+# Expected only
+plot_TK_scans.py --model top_floatingBR_ctcg --input-dir /work/gallim/DifferentialCombination_home/outputs/TK_scans/Top_scalingttH_floatingBRs --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/TK_plots/top_floatingBR_ctcg --categories HggHZZHWWHttHttBoost --combination HggHZZHWWHttHttBoost --expected
+
+
+```
+
+### Top_scalingbbHttH_couplingdependentBRs
+
+*HggHZZHWWHttHttBoost*
+
+```
+# produce workspace
+produce_TK_workspace.py --model Top_scalingbbHttH_couplingdependentBRs --category HggHZZHWWHttHttBoost
+
+# submit scans
+submit_TK_scans.py --model Top_scalingbbHttH_couplingdependentBRs --category HggHZZHWWHttHttBoost_asimov --input-dir /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/CombinedWorkspaces/TK --output-dir outputs/TK_scans
+
+```
+
+*Plots*
+
+```
+# Expected only
+plot_TK_scans.py --model top_coupdep_ctcb --input-dir /work/gallim/DifferentialCombination_home/outputs/TK_scans/Top_scalingbbHttH_couplingdependentBRs --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/TK_plots/top_coupdep_ctcb --categories HggHZZHWWHttHttBoost --combination HggHZZHWWHttHttBoost --expected
+```
+
+### Top_scalingbbHttH_floatingBRs
+
+*HggHZZHWWHttHttBoost*
+
+```
+# produce workspace
+produce_TK_workspace.py --model Top_scalingbbHttH_floatingBRs --category HggHZZHWWHttHttBoost
+
+# submit scans
+submit_TK_scans.py --model Top_scalingbbHttH_floatingBRs --category HggHZZHWWHttHttBoost_asimov --input-dir /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/CombinedWorkspaces/TK --output-dir outputs/TK_scans
+```
+
+*Plots*
+
+```
+```
