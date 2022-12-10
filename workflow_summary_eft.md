@@ -135,3 +135,5 @@ time python chi_square_fitter.py --prediction-dir /work/gallim/DifferentialCombi
 
 **A quick note**: while writing this part, I also tried to do the same without pruning (i.e. using the original equations in both cases) and there seem to be almost no difference. I can probably skip that part and use the ```EFTScalingEquations``` scripts just to select the operators.
 
+## PCA subgroups
+

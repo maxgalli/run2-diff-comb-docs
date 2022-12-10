@@ -76,13 +76,13 @@ python DifferentialCombinationRun2/specific_scripts/rename_Htt_histos.py
 ### HbbVBF
 Two main problems have to be tackled here:
 - a bug in Combine that makes it forget to append the path for extArgs systematics area; due to this, it works when you run ```text2workspace.py``` from the same directory where the ROOT files are stored, but not from anywhere else
-- conventions are completely fucked (since they didn;t even know that they would have been part of a combination); this would be fine for signal strength measurements only but not for TK scenario
+- conventions are completely fucked (since they didn;t even know that they would have been part of a combination); this would be fine for signal strength measurements only but not for TK scenario; the processes called simply ```ggF``` have to be changed to the required ```ggH_450_500``` etc.
 
 Both problems are solved running
 ```
 python DifferentialCombinationRun2/specific_scripts/rename_HbbVBF_processes.py
 ```
-a new datacard pointing to new ROOT files is created.
+a new datacard pointing to new ROOT files is created, called ```model_combined_withpaths.txt```.
 
 We then need to prepend "hbb" to the bins, in order to make it usable also individually within SMEFT interpretation.
 
