@@ -137,3 +137,9 @@ time python chi_square_fitter.py --prediction-dir /work/gallim/DifferentialCombi
 
 ## PCA subgroups
 
+## Summary of Models/Categories that give acceptable results
+
+- 221121PruneNoCPEVhgghzzhwwhtthbbvbfhttboostLinear_6Pars
+    - HggHZZHWWHttHbbVBFHttBoost_asimov
+- 221206GroupStudyEVhgghzzEWPOBosonicYukawaRestchg_2Pars
+    - HggHZZ_asimov
