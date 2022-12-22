@@ -1,7 +1,7 @@
 title: Full Run2 Differential Combination and Interpretation # EDIT: Fill this in
 description: Documentation # EDIT: Fill this in
 
-remote_theme: pmarsceill/just-the-docs # Borrowing the theme from https://github.com/pmarsceill/just-the-docs
+remote_theme: maxgalli/just-the-docs # Borrowing the theme from https://github.com/pmarsceill/just-the-docs
 github_repo_url: "https://github.com/maxgalli/run2-diff-comb-docs" # EDIT: REPLACE WITH THE URL TO YOUR WEBPAGE
 
 # Heading anchor links appear on hover over h1-h6 tags in page content
