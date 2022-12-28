@@ -228,6 +228,10 @@ produce_workspace.py --datacard DifferentialCombinationRun2/CombinedCards/smH_PT
 
 # submit scans
 submit_scans.py --model SM --observable smH_PTH --category HggHZZHWWHttHbbVBFHttBoost_asimov  --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/smH_PTH --output-dir outputs/SM_scans
+
+submit_scans.py --model SM --observable smH_PTH --category HggHZZHWWHttHbbVBFHttBoost_asimov_statonly  --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/smH_PTH --output-dir outputs/SM_scans --global-fit-file /work/gallim/DifferentialCombination_home/outputs/SM_scans/smH_PTH/HggHZZHWWHttHbbVBFHttBoost_asimov-20221210xxx193718/higgsCombineAsimovPostFit.GenerateOnly.mH125.38.123456.root
+
+
 ```
 
 *HggHZZInclusive*
@@ -282,7 +286,7 @@ submit_scans.py --model SM --observable Njets --category HWW --input-dir Differe
 
 ```
 # produce workspace
-produce_workspace.py --datacard DifferentialCombinationRun2/Analyses/hig-20-015/NJets/HTT_Run2FinalCard_NJets_NoReg.txt --model SM --observable Njets --category Htt
+produce_workspace.py --datacard DifferentialCombinationRun2/Analyses/hig-20-015/NJets/HTT_Run2FinalCard_NJets_AddedReg.txt --model SM --observable Njets --category Htt
 
 # submit scans
 submit_scans.py --model SM --observable Njets --category Htt  --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/Njets --output-dir outputs/SM_scans
@@ -325,7 +329,11 @@ combineCards.py hgg=DifferentialCombinationRun2/Analyses/hig-19-016/outdir_diffe
 
 # submit scans
 submit_scans.py --model SM --observable Njets --category HggHZZHWWHtt_asimov --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/Njets --output-dir outputs/SM_scans
+
 submit_scans.py --model SM --observable Njets --category HggHZZHWWHtt --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/Njets --output-dir outputs/SM_scans
+
+submit_scans.py --model SM --observable Njets --category HggHZZHWWHtt_statonly --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/Njets --output-dir outputs/SM_scans --global-fit-file /work/gallim/DifferentialCombination_home/outputs/SM_scans/Njets/HggHZZHWWHtt-20221115xxx114332/higgsCombine_POSTFIT_HggHZZHWWHtt.MultiDimFit.mH125.38.root
+
 
 # plot
 plot_xs_scans.py --observable Njets --input-dir outputs/SM_scans/Njets --metadata-dir DifferentialCombinationRun2/metadata/xs_POIs/SM --output-dir outputs/SM_plots --categories HggHZZHWWHtt Hgg HZZ HWW --singles Htt --config-file DifferentialCombinationRun2/metadata/xs_POIs/SM/Njets/plot_config.yml
@@ -501,7 +509,10 @@ produce_workspace.py --datacard DifferentialCombinationRun2/CombinedCards/mjj/Hg
 
 # submit scans
 submit_scans.py --model SM --observable mjj --category HggHZZ_asimov --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/mjj --output-dir outputs/SM_scans
+
 submit_scans.py --model SM --observable mjj --category HggHZZ --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/mjj --output-dir outputs/SM_scans
+
+submit_scans.py --model SM --observable mjj --category HggHZZ_statonly --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/mjj --output-dir outputs/SM_scans --global-fit-file /work/gallim/DifferentialCombination_home/outputs/SM_scans/mjj/HggHZZ-20221127xxx194427/higgsCombine_POSTFIT_HggHZZ.MultiDimFit.mH125.38.root
 
 # plot
 plot_xs_scans.py --observable mjj --input-dir outputs/SM_scans/mjj --metadata-dir DifferentialCombinationRun2/metadata/xs_POIs/SM --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/SM_plots --categories HggHZZ Hgg HZZ --config-file DifferentialCombinationRun2/metadata/xs_POIs/SM/mjj/plot_config.yml
@@ -543,6 +554,10 @@ produce_workspace.py --datacard DifferentialCombinationRun2/CombinedCards/DEtajj
 
 # submit scans
 
+submit_scans.py --model SM --observable DEtajj --category HggHZZ --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/DEtajj --output-dir outputs/SM_scans
+
+submit_scans.py --model SM --observable DEtajj --category HggHZZ_statonly --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/DEtajj --output-dir outputs/SM_scans --global-fit-file /work/gallim/DifferentialCombination_home/outputs/SM_scans/DEtajj/HggHZZ-20221127xxx181857/higgsCombine_POSTFIT_HggHZZ.MultiDimFit.mH125.38.root
+
 
 # plot
 plot_xs_scans.py --observable DEtajj --input-dir outputs/SM_scans/DEtajj --metadata-dir DifferentialCombinationRun2/metadata/xs_POIs/SM --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/SM_plots --categories HggHZZ Hgg HZZ --config-file DifferentialCombinationRun2/metadata/xs_POIs/SM/DEtajj/plot_config.yml
@@ -569,6 +584,7 @@ produce_workspace.py --datacard DifferentialCombinationRun2/Analyses/hig-21-009/
 
 # submit scans
 submit_scans.py --model SM --observable TauCJ --category HZZ_asimov --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/TauCJ --output-dir outputs/SM_scans
+
 submit_scans.py --model SM --observable TauCJ --category HZZ --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/TauCJ --output-dir outputs/SM_scans
 ```
 
@@ -583,7 +599,10 @@ produce_workspace.py --datacard DifferentialCombinationRun2/CombinedCards/TauCJ/
 
 # submit scans
 submit_scans.py --model SM --observable TauCJ --category HggHZZ_asimov --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/TauCJ --output-dir outputs/SM_scans
+
 submit_scans.py --model SM --observable TauCJ --category HggHZZ --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/TauCJ --output-dir outputs/SM_scans
+
+submit_scans.py --model SM --observable TauCJ --category HggHZZ_statonly --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/TauCJ --output-dir outputs/SM_scans--global-fit-file /work/gallim/DifferentialCombination_home/outputs/SM_scans/TauCJ/HggHZZ-20221127xxx224914/higgsCombine_POSTFIT_HggHZZ.MultiDimFit.mH125.38.root
 
 # plot
 plot_xs_scans.py --observable TauCJ --input-dir outputs/SM_scans/TauCJ --metadata-dir DifferentialCombinationRun2/metadata/xs_POIs/SM --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/SM_plots --categories HggHZZ Hgg HZZ --config-file DifferentialCombinationRun2/metadata/xs_POIs/SM/TauCJ/plot_config.yml
