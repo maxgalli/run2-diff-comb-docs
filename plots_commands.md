@@ -22,19 +22,19 @@ plot_xs_scans.py --observable mjj --input-dir outputs/SM_scans/mjj --metadata-di
 plot_xs_scans.py --observable TauCJ --input-dir outputs/SM_scans/TauCJ --metadata-dir DifferentialCombinationRun2/metadata/xs_POIs/SM --output-dir outputs/SM_plots --categories HggHZZ Hgg HZZ --config-file DifferentialCombinationRun2/metadata/xs_POIs/SM/TauCJ/plot_config.yml --systematic-bands HggHZZ
 
 # matrices
-plot_matrices.py --rfr-file outputs/SM_scans/smH_PTH/HggHZZHWWHttHbbVBFHttBoost_asimov-20221210xxx193718/multidimfitAsimovBestFit.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/AN_plots/SM/results/ --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/smH_PTH/HggHZZHWWHttHbbVBFHttBoost.yml --suffix _smH_PTH_expected
+plot_matrices.py --rfr-file outputs/SM_scans/smH_PTH/HggHZZHWWHttHbbVBFHttBoost_asimov-20221210xxx193718/multidimfitAsimovBestFit.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/AN_plots/SM/results/ --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/smH_PTH/HggHZZHWWHttHbbVBFHttBoost.yml --suffix _smH_PTH_expected --observable smH_PTH
 
-plot_matrices.py --rfr-file outputs/SM_scans/smH_PTJ0/HggHZZHttBoost_asimov-20221229xxx095201/multidimfitAsimovBestFit.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/AN_plots/SM/results/ --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/smH_PTJ0/HggHZZHttBoost.yml --suffix _smH_PTJ0_expected
+plot_matrices.py --rfr-file outputs/SM_scans/smH_PTJ0/HggHZZHttBoost_asimov-20221229xxx095201/multidimfitAsimovBestFit.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/AN_plots/SM/results/ --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/smH_PTJ0/HggHZZHttBoost.yml --suffix _smH_PTJ0_expected --observable smH_PTJ0
 
-plot_matrices.py --rfr-file DifferentialCombinationRun2/outputs/matrices/SM/Njets/HggHZZHWWHtt/obs/multidimfit_POSTFIT_HggHZZHWWHtt.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/AN_plots/SM/results/ --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/Njets/HggHZZHWWHtt.yml --suffix _Njets_obs
+plot_matrices.py --rfr-file DifferentialCombinationRun2/outputs/matrices/SM/Njets/HggHZZHWWHtt/obs/multidimfit_POSTFIT_HggHZZHWWHtt.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/AN_plots/SM/results/ --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/Njets/HggHZZHWWHtt.yml --suffix _Njets_obs --observable Njets
 
 
 
-plot_matrices.py --rfr-file DifferentialCombinationRun2/outputs/matrices/SM/DEtajj/HggHZZ/obs/multidimfit_POSTFIT_HggHZZ.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/AN_plots/SM/results/ --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/DEtajj/HggHZZ.yml --suffix _DEtajj_obs
+plot_matrices.py --rfr-file DifferentialCombinationRun2/outputs/matrices/SM/DEtajj/HggHZZ/obs/multidimfit_POSTFIT_HggHZZ.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/AN_plots/SM/results/ --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/DEtajj/HggHZZ.yml --suffix _DEtajj_obs --observable DEtajj
 
-plot_matrices.py --rfr-file DifferentialCombinationRun2/outputs/matrices/SM/mjj/HggHZZ/obs/multidimfit_POSTFIT_HggHZZ.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/AN_plots/SM/results/ --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/mjj/HggHZZ.yml --suffix _mjj_obs
+plot_matrices.py --rfr-file DifferentialCombinationRun2/outputs/matrices/SM/mjj/HggHZZ/obs/multidimfit_POSTFIT_HggHZZ.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/AN_plots/SM/results/ --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/mjj/HggHZZ.yml --suffix _mjj_obs --observable mjj
 
-plot_matrices.py --rfr-file DifferentialCombinationRun2/outputs/matrices/SM/TauCJ/HggHZZ/obs/multidimfit_POSTFIT_HggHZZ.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/AN_plots/SM/results/ --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/TauCJ/HggHZZ.yml --suffix _TauCJ_obs
+plot_matrices.py --rfr-file DifferentialCombinationRun2/outputs/matrices/SM/TauCJ/HggHZZ/obs/multidimfit_POSTFIT_HggHZZ.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/AN_plots/SM/results/ --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/TauCJ/HggHZZ.yml --suffix _TauCJ_obs --observable TauCJ
 ```
 
 PCA related plots:
