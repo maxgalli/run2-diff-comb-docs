@@ -231,7 +231,8 @@ submit_scans.py --model SM --observable smH_PTH --category HggHZZHWWHttHbbVBFHtt
 
 submit_scans.py --model SM --observable smH_PTH --category HggHZZHWWHttHbbVBFHttBoost_asimov_statonly  --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SM/smH_PTH --output-dir outputs/SM_scans --global-fit-file /work/gallim/DifferentialCombination_home/outputs/SM_scans/smH_PTH/HggHZZHWWHttHbbVBFHttBoost_asimov-20221210xxx193718/higgsCombineAsimovPostFit.GenerateOnly.mH125.38.123456.root
 
-
+# plot
+plot_xs_scans.py --observable smH_PTH --input-dir outputs/SM_scans/smH_PTH --metadata-dir DifferentialCombinationRun2/metadata/xs_POIs/SM --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/SM_plots --categories HggHZZHWWHttHbbVBFHttBoost Hgg HZZ HWW --singles Htt HbbVBF HttBoost --config-file DifferentialCombinationRun2/metadata/xs_POIs/SM/smH_PTH/plot_config.yml --systematic-bands HggHZZHWWHttHbbVBFHttBoost
 ```
 
 *HggHZZInclusive*

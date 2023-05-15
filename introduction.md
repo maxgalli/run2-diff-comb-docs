@@ -10,7 +10,7 @@ In order to (re)produce the analysis, the following repositories are necessary:
 - [EFTModelsStudies](https://github.com/maxgalli/EFTModelsStudies)
 - [EFTScalingEquations](https://github.com/maxgalli/EFTScalingEquations/tree/differentials_220506)
 - [EFT2Obs](https://github.com/maxgalli/EFT2Obs/tree/Run2Legacy_WithOtherChannels2)
-- Combine + CombineHarvester
+- Combine (branch [EFT_model-on102x-220804](https://github.com/maxgalli/HiggsAnalysis-CombinedLimit/tree/EFT_model-on102x-220804)) + CombineHarvester (branch comb2021)
 - an installation of [TK's framework](https://github.com/tklijnsma/differentialCombination2017) would be useful (even if maybe not necessary)
 
 Other useful links:
