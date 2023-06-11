@@ -143,3 +143,46 @@ time python chi_square_fitter.py --prediction-dir /work/gallim/DifferentialCombi
     - HggHZZHWWHttHbbVBFHttBoost_asimov
 - 221206GroupStudyEVhgghzzEWPOBosonicYukawaRestchg_2Pars
     - HggHZZ_asimov
+
+## Full Commands
+
+### DeltaPhiJJ Hgg+HZZ with CP-even CP-odd studies
+
+Combine cards:
+```
+combineCards.py hgg=DifferentialCombinationRun2/Analyses/hig-19-016/outdir_differential_AbsDeltaPhiJ1J2Jets4p7/Datacard_13TeV_differential_AbsDeltaPhiJ1J2Jets4p7.txt hzz=DifferentialCombinationRun2/Analyses/hig-21-009/dphijj/hzz4l_all_13TeV_xs_dphijj_bin_v3.txt > DifferentialCombinationRun2/CombinedCards/DeltaPhiJJ/HggHZZ.txt
+```
+
+#### LO (chg)
+
+
+
+#### NLO (chb, chw, chwb)
+
+Produce workspace:
+
+```
+produce_SMEFT_workspace.py --datacard DifferentialCombinationRun2/CombinedCards/DeltaPhiJJ/HggHZZ.txt --config-file DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ.yml --equations-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiff-230530 --chan-obs DifferentialCombinationRun2/metadata/SMEFT/config/DeltaPhiJJHggHZZ.json --output-dir DifferentialCombinationRun2/CombinedWorkspaces/SMEFT/CMS-ForDiff-230530
+```
+
+Submit scans expected:
+
+```
+submit_SMEFT_scans.py --chan-obs DifferentialCombinationRun2/metadata/SMEFT/config/DeltaPhiJJHggHZZ.json --category asimov --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SMEFT/CMS-ForDiff-230530/230611AtlasDPJ --output-dir outputs/SMEFT_scans --base-model DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ.yml --submodel DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ_ChbScen.yml
+
+submit_SMEFT_scans.py --chan-obs DifferentialCombinationRun2/metadata/SMEFT/config/DeltaPhiJJHggHZZ.json --category asimov --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SMEFT/CMS-ForDiff-230530/230611AtlasDPJ --output-dir outputs/SMEFT_scans --base-model DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ.yml --submodel DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ_ChwScen.yml
+
+submit_SMEFT_scans.py --chan-obs DifferentialCombinationRun2/metadata/SMEFT/config/DeltaPhiJJHggHZZ.json --category asimov --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SMEFT/CMS-ForDiff-230530/230611AtlasDPJ --output-dir outputs/SMEFT_scans --base-model DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ.yml --submodel DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ_ChwbScen.yml
+```
+
+Plot expected:
+
+```
+plot_SMEFT_scans.py --how submodel --model 230611AtlasDPJ --submodel DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ_ChbScen.yml --input-dir outputs/SMEFT_scans --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/SMEFT_plots --categories DeltaPhiJJHggHZZ --combination DeltaPhiJJHggHZZ --expected --force-2D-limit
+
+plot_SMEFT_scans.py --how submodel --model 230611AtlasDPJ --submodel DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ_ChwScen.yml --input-dir outputs/SMEFT_scans --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/SMEFT_plots --categories DeltaPhiJJHggHZZ --combination DeltaPhiJJHggHZZ --expected --force-2D-limit
+
+plot_SMEFT_scans.py --how submodel --model 230611AtlasDPJ --submodel DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ_ChwbScen.yml --input-dir outputs/SMEFT_scans --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/SMEFT_plots --categories DeltaPhiJJHggHZZ --combination DeltaPhiJJHggHZZ --expected --force-2D-limit
+```
+
+In order to submit the scans for observed, just replace ```--category asimov``` with ```--category observed``` and, to plot, ```--expected``` with ```--expected-bkg```.
