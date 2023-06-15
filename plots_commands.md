@@ -74,3 +74,23 @@ Pruned scans:
 ```
 plot_two_scans.py --input-dir /work/gallim/DifferentialCombination_home/checks/221219_envelope_pruning/hig-19-016/outdir_differential_PtInclusive --label Original --other-input-dir /work/gallim/DifferentialCombination_home/checks/221219_envelope_pruning/pruned_outdir_differential_PtInclusive --other-label Pruned --poi r0 --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/AN_plots/other --file-name-tmpl higgsCombineDataScan_r0*
 ```
+
+SMEFT Partial Decay Width Parametrization
+
+```
+cd /work/gallim/DifferentialCombination_home/EFTScalingEquations/scripts_differentials
+python plot_matt_check.py
+```
+
+```
+python chi_square_fitter.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-prelim-SMEFT-topU3l_22_05_05_AccCorr --submodel /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/230606_CombTest.yml --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/Checks/230615_mattchecks --config config/PtHZZ.json --fit-model full --skip2D
+python chi_square_fitter.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-prelim-SMEFT-topU3l_22_05_05_AccCorr --submodel /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/230606_CombTest.yml --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/Checks/230615_mattchecks --config config/PtHZZ.json --fit-model full --skip2D --suffix _split
+python chi_square_fitter.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-prelim-SMEFT-topU3l_22_05_05_AccCorr --submodel /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/230606_CombTestW.yml --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/Checks/230615_mattchecks --config config/PtHWW.json --fit-model full --skip2D
+python chi_square_fitter.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-prelim-SMEFT-topU3l_22_05_05_AccCorr --submodel /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/230606_CombTestW.yml --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/Checks/230615_mattchecks --config config/PtHWW.json --fit-model full --skip2D --suffix _split
+python chi_square_fitter.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-prelim-SMEFT-topU3l_22_05_05_AccCorr --submodel /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/230606_CombTest.yml --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/Checks/230615_mattchecks --config config/PtHggHZZ.json --fit-model full --skip2D
+python chi_square_fitter.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-prelim-SMEFT-topU3l_22_05_05_AccCorr --submodel /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/230606_CombTest.yml --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/Checks/230615_mattchecks --config config/PtHggHZZ.json --fit-model full --skip2D --suffix _split
+python chi_square_fitter.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-prelim-SMEFT-topU3l_22_05_05_AccCorr --submodel /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/230606_CombTestW.yml --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/Checks/230615_mattchecks --config config/PtHggHWW.json --fit-model full --skip2D
+python chi_square_fitter.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-prelim-SMEFT-topU3l_22_05_05_AccCorr --submodel /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/230606_CombTestW.yml --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/Checks/230615_mattchecks --config config/PtHggHWW.json --fit-model full --skip2D --suffix _split
+
+python tries/230615_CheckaAN.py
+```

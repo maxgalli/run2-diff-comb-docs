@@ -144,6 +144,7 @@ time python chi_square_fitter.py --prediction-dir /work/gallim/DifferentialCombi
 - 221206GroupStudyEVhgghzzEWPOBosonicYukawaRestchg_2Pars
     - HggHZZ_asimov
 
+
 ## Full Commands
 
 ### DeltaPhiJJ Hgg+HZZ with CP-even CP-odd studies
@@ -153,36 +154,40 @@ Combine cards:
 combineCards.py hgg=DifferentialCombinationRun2/Analyses/hig-19-016/outdir_differential_AbsDeltaPhiJ1J2Jets4p7/Datacard_13TeV_differential_AbsDeltaPhiJ1J2Jets4p7.txt hzz=DifferentialCombinationRun2/Analyses/hig-21-009/dphijj/hzz4l_all_13TeV_xs_dphijj_bin_v3.txt > DifferentialCombinationRun2/CombinedCards/DeltaPhiJJ/HggHZZ.txt
 ```
 
-#### LO (chg)
-
-
-
 #### NLO (chb, chw, chwb)
 
 Produce workspace:
 
 ```
-produce_SMEFT_workspace.py --datacard DifferentialCombinationRun2/CombinedCards/DeltaPhiJJ/HggHZZ.txt --config-file DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ.yml --equations-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiff-230530 --chan-obs DifferentialCombinationRun2/metadata/SMEFT/config/DeltaPhiJJHggHZZ.json --output-dir DifferentialCombinationRun2/CombinedWorkspaces/SMEFT/CMS-ForDiff-230530
+produce_SMEFT_workspace.py --datacard DifferentialCombinationRun2/CombinedCards/DeltaPhiJJ/HggHZZ.txt --config-file DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ.yml --equations-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiff-230530-FullDecay --chan-obs DifferentialCombinationRun2/metadata/SMEFT/config/DeltaPhiJJHggHZZ.json --output-dir DifferentialCombinationRun2/CombinedWorkspaces/SMEFT/CMS-ForDiff-230530-FullDecay
 ```
 
 Submit scans expected:
 
 ```
-submit_SMEFT_scans.py --chan-obs DifferentialCombinationRun2/metadata/SMEFT/config/DeltaPhiJJHggHZZ.json --category asimov --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SMEFT/CMS-ForDiff-230530/230611AtlasDPJ --output-dir outputs/SMEFT_scans --base-model DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ.yml --submodel DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ_ChbScen.yml
-
-submit_SMEFT_scans.py --chan-obs DifferentialCombinationRun2/metadata/SMEFT/config/DeltaPhiJJHggHZZ.json --category asimov --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SMEFT/CMS-ForDiff-230530/230611AtlasDPJ --output-dir outputs/SMEFT_scans --base-model DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ.yml --submodel DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ_ChwScen.yml
-
-submit_SMEFT_scans.py --chan-obs DifferentialCombinationRun2/metadata/SMEFT/config/DeltaPhiJJHggHZZ.json --category asimov --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SMEFT/CMS-ForDiff-230530/230611AtlasDPJ --output-dir outputs/SMEFT_scans --base-model DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ.yml --submodel DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ_ChwbScen.yml
+for how in asimov observed; do for ext in Chb Chw Chwb; do submit_SMEFT_scans.py --chan-obs DifferentialCombinationRun2/metadata/SMEFT/config/DeltaPhiJJHggHZZ.json --category ${how} --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SMEFT/CMS-ForDiff-230530-FullDecay/230611AtlasDPJ --output-dir outputs/SMEFT_scans --base-model DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ.yml --submodel DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ_${ext}.yml; done; done
 ```
 
 Plot expected:
 
 ```
-plot_SMEFT_scans.py --how submodel --model 230611AtlasDPJ --submodel DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ_ChbScen.yml --input-dir outputs/SMEFT_scans --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/SMEFT_plots --categories DeltaPhiJJHggHZZ --combination DeltaPhiJJHggHZZ --expected --force-2D-limit
-
-plot_SMEFT_scans.py --how submodel --model 230611AtlasDPJ --submodel DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ_ChwScen.yml --input-dir outputs/SMEFT_scans --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/SMEFT_plots --categories DeltaPhiJJHggHZZ --combination DeltaPhiJJHggHZZ --expected --force-2D-limit
-
-plot_SMEFT_scans.py --how submodel --model 230611AtlasDPJ --submodel DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ_ChwbScen.yml --input-dir outputs/SMEFT_scans --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/SMEFT_plots --categories DeltaPhiJJHggHZZ --combination DeltaPhiJJHggHZZ --expected --force-2D-limit
+for how in expected expected-bkg; do for ext in Chb Chw Chwb; do plot_SMEFT_scans.py --how submodel --model 230611AtlasDPJ --submodel DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ_${ext}Scen.yml --input-dir outputs/SMEFT_scans --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/SMEFT_plots --categories DeltaPhiJJHggHZZ --combination DeltaPhiJJHggHZZ --${how} --force-2D-limit; done; done
 ```
 
-In order to submit the scans for observed, just replace ```--category asimov``` with ```--category observed``` and, to plot, ```--expected``` with ```--expected-bkg```.
+#### LO (chg)
+
+Produce workspace:
+
+```
+produce_SMEFT_workspace.py --datacard DifferentialCombinationRun2/CombinedCards/DeltaPhiJJ/HggHZZ.txt --config-file DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ.yml --equations-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiffAllSMEFTsim-230530 --chan-obs DifferentialCombinationRun2/metadata/SMEFT/config/DeltaPhiJJHggHZZ.json --output-dir DifferentialCombinationRun2/CombinedWorkspaces/SMEFT/CMS-ForDiffAllSMEFTsim-230530
+```
+
+Submit scan expected:
+
+```
+submit_SMEFT_scans.py --chan-obs DifferentialCombinationRun2/metadata/SMEFT/config/DeltaPhiJJHggHZZ.json --category asimov --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SMEFT/CMS-ForDiffAllSMEFTsim-230530/230611AtlasDPJ --output-dir outputs/SMEFT_scans --base-model DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ.yml --submodel DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ_ChgScen.yml
+```
+
+### Full Pt Combination for CP-even CP-odd studies
+
+#### NLO
