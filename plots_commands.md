@@ -59,6 +59,18 @@ plot_matrices.py --rfr-file outputs/SMEFT_scans/smH_PTH/221220PruneNoCPEVhgghzzh
 python DifferentialCombinationPostProcess/specific_scripts/plot_rotation_example_chi.py
 ```
 
+Equations for deltaphijj:
+
+```
+python print_latex_equations.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiffAllSMEFTsim-230530-FullDecay --submodel-yaml /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ_ChgScen.yml --fit-model full --config /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/config/DeltaPhiJJHggHZZ.json
+
+python print_latex_equations.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiff-230530-FullDecay --submodel-yaml /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ_ChwScen.yml --fit-model full --config /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/config/DeltaPhiJJHggHZZ.json
+
+python print_latex_equations.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiff-230530-FullDecay --submodel-yaml /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ_ChbScen.yml --fit-model full --config /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/config/DeltaPhiJJHggHZZ.json
+
+python print_latex_equations.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiff-230530-FullDecay --submodel-yaml /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ_ChwbScen.yml --fit-model full --config /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/config/DeltaPhiJJHggHZZ.json
+```
+
 Mega SMEFT tables:
 
 ```

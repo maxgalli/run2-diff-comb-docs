@@ -159,7 +159,12 @@ combineCards.py hgg=DifferentialCombinationRun2/Analyses/hig-19-016/outdir_diffe
 Produce workspace:
 
 ```
-produce_SMEFT_workspace.py --datacard DifferentialCombinationRun2/CombinedCards/DeltaPhiJJ/HggHZZ.txt --config-file DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ.yml --equations-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiff-230530-FullDecay --chan-obs DifferentialCombinationRun2/metadata/SMEFT/config/DeltaPhiJJHggHZZ.json --output-dir DifferentialCombinationRun2/CombinedWorkspaces/SMEFT/CMS-ForDiff-230530-FullDecay
+produce_SMEFT_workspace.py \
+--datacard DifferentialCombinationRun2/CombinedCards/DeltaPhiJJ/HggHZZ.txt \
+--config-file DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ.yml \
+--equations-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiff-230530-FullDecay \
+--chan-obs DifferentialCombinationRun2/metadata/SMEFT/config/DeltaPhiJJHggHZZ.json \
+--output-dir DifferentialCombinationRun2/CombinedWorkspaces/SMEFT/CMS-ForDiff-230530-FullDecay
 ```
 
 Submit scans expected:
@@ -179,15 +184,85 @@ for how in expected expected-bkg; do for ext in Chb Chw Chwb; do plot_SMEFT_scan
 Produce workspace:
 
 ```
-produce_SMEFT_workspace.py --datacard DifferentialCombinationRun2/CombinedCards/DeltaPhiJJ/HggHZZ.txt --config-file DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ.yml --equations-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiffAllSMEFTsim-230530 --chan-obs DifferentialCombinationRun2/metadata/SMEFT/config/DeltaPhiJJHggHZZ.json --output-dir DifferentialCombinationRun2/CombinedWorkspaces/SMEFT/CMS-ForDiffAllSMEFTsim-230530
+produce_SMEFT_workspace.py \
+--datacard DifferentialCombinationRun2/CombinedCards/DeltaPhiJJ/HggHZZ.txt \
+--config-file DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ.yml \
+--equations-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiffAllSMEFTsim-230530 \
+--chan-obs DifferentialCombinationRun2/metadata/SMEFT/config/DeltaPhiJJHggHZZ.json \
+--output-dir DifferentialCombinationRun2/CombinedWorkspaces/SMEFT/CMS-ForDiffAllSMEFTsim-230530-FullDecay
 ```
 
 Submit scan expected:
 
 ```
-submit_SMEFT_scans.py --chan-obs DifferentialCombinationRun2/metadata/SMEFT/config/DeltaPhiJJHggHZZ.json --category asimov --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SMEFT/CMS-ForDiffAllSMEFTsim-230530/230611AtlasDPJ --output-dir outputs/SMEFT_scans --base-model DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ.yml --submodel DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ_ChgScen.yml
+submit_SMEFT_scans.py \
+--chan-obs DifferentialCombinationRun2/metadata/SMEFT/config/DeltaPhiJJHggHZZ.json \
+--category asimov \
+--input-dir DifferentialCombinationRun2/CombinedWorkspaces/SMEFT/CMS-ForDiffAllSMEFTsim-230530-FullDecay/230611AtlasDPJ \
+--output-dir outputs/SMEFT_scans \
+--base-model DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ.yml \
+--submodel DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ_ChgScen.yml
 ```
 
 ### Full Pt Combination for CP-even CP-odd studies
 
 #### NLO
+
+Produce workspace:
+
+```
+produce_SMEFT_workspace.py \
+--datacard DifferentialCombinationRun2/CombinedCards/smH_PTH/HggHZZHWWHttHbbVBFHttBoost.txt \
+--config-file DifferentialCombinationRun2/metadata/SMEFT/220926Atlas.yml \
+--equations-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiff-230530-FullDecay \
+--chan-obs DifferentialCombinationRun2/metadata/SMEFT/config/PtFullComb.json \
+--output-dir DifferentialCombinationRun2/CombinedWorkspaces/SMEFT/CMS-ForDiff-230530-FullDecay
+```
+
+#### LO
+
+Produce workspace:
+
+```
+produce_SMEFT_workspace.py \
+--datacard DifferentialCombinationRun2/CombinedCards/smH_PTH/HggHZZHWWHttHbbVBFHttBoost.txt \
+--config-file DifferentialCombinationRun2/metadata/SMEFT/220926Atlas.yml \
+--equations-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiffAllSMEFTsim-230530-FullDecay \
+--chan-obs DifferentialCombinationRun2/metadata/SMEFT/config/PtFullComb.json \
+--output-dir DifferentialCombinationRun2/CombinedWorkspaces/SMEFT/CMS-ForDiffAllSMEFTsim-230530-FullDecay
+```
+
+Submit scans:
+
+```
+submit_SMEFT_scans.py \
+--chan-obs DifferentialCombinationRun2/metadata/SMEFT/config/PtFullComb.json \
+--category asimov \
+--input-dir DifferentialCombinationRun2/CombinedWorkspaces/SMEFT/CMS-ForDiff-230530-FullDecay/220926Atlas \
+--output-dir outputs/SMEFT_scans \
+--base-model DifferentialCombinationRun2/metadata/SMEFT/220926Atlas.yml \
+--submodel DifferentialCombinationRun2/metadata/SMEFT/220926Atlas_ChgScen.yml
+```
+
+### Full Pt Combination with PCA
+
+Run PCA:
+
+```
+python pca.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiff-230530 --model-yaml /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/230620PruneNoCP.yml --config /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/config/PtFullComb.json --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/EFTModelsStudies/SMEFT/FullStudies --how A
+```
+
+Create ```/work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/230620PruneNoCPEVPtFullCombLinearised.yml``` following the rule of thumb of having ```10 * 1/sqrt(EV)``` for the uncertainties.
+
+Run chisquare fit just because:
+
+```
+python chi_square_fitter.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiff-230530_rotated230620PruneNoCPPtFullCombA --submodel /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/230620PruneNoCPEVPtFullCombLinearised.yml --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/EFTModelsStudies/SMEFT/FullStudies --config /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/config/PtFullComb.json --fit-model linearised --skip2D --multiprocess
+```
+
+Move to combine and do:
+
+```
+produce_SMEFT_workspace.py --datacard DifferentialCombinationRun2/CombinedCards/smH_PTH/HggHZZHWWHttHbbVBFHttBoost.txt --config-file DifferentialCombinationRun2/metadata/SMEFT/230620PruneNoCPEVPtFullCombLinearised.yml --equations-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiff-230530_rotated230620PruneNoCPPtFullCombA --chan-obs DifferentialCombinationRun2/metadata/SMEFT/config/PtFullComb.json --linearised
+```
+
