@@ -219,6 +219,10 @@ produce_SMEFT_workspace.py \
 --output-dir DifferentialCombinationRun2/CombinedWorkspaces/SMEFT/CMS-ForDiff-230530-FullDecay
 ```
 
+```
+for ext in Chb Chw Chwb; do submit_SMEFT_scans.py --chan-obs DifferentialCombinationRun2/metadata/SMEFT/config/PtFullComb.json --category asimov --input-dir DifferentialCombinationRun2/CombinedWorkspaces/SMEFT/CMS-ForDiff-230530-FullDecay/220926Atlas --output-dir outputs/SMEFT_scans --base-model DifferentialCombinationRun2/metadata/SMEFT/220926Atlas.yml --submodel DifferentialCombinationRun2/metadata/SMEFT/220926Atlas_${ext}Scen.yml; done
+```
+
 #### LO
 
 Produce workspace:
@@ -257,12 +261,51 @@ Create ```/work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/
 Run chisquare fit just because:
 
 ```
-python chi_square_fitter.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiff-230530_rotated230620PruneNoCPPtFullCombA --submodel /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/230620PruneNoCPEVPtFullCombLinearised.yml --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/EFTModelsStudies/SMEFT/FullStudies --config /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/config/PtFullComb.json --fit-model linearised --skip2D --multiprocess
+python chi_square_fitter.py \
+--prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiff-230530_rotated230620PruneNoCPPtFullCombA \
+--submodel /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/230620PruneNoCPEVPtFullCombLinearised.yml \
+--output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/EFTModelsStudies/SMEFT/FullStudies \
+--config /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/config/PtFullComb.json \
+--fit-model linearised \
+--skip2D \
+--multiprocess
 ```
 
 Move to combine and do:
 
 ```
-produce_SMEFT_workspace.py --datacard DifferentialCombinationRun2/CombinedCards/smH_PTH/HggHZZHWWHttHbbVBFHttBoost.txt --config-file DifferentialCombinationRun2/metadata/SMEFT/230620PruneNoCPEVPtFullCombLinearised.yml --equations-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiff-230530_rotated230620PruneNoCPPtFullCombA --chan-obs DifferentialCombinationRun2/metadata/SMEFT/config/PtFullComb.json --linearised
+produce_SMEFT_workspace.py \
+--datacard DifferentialCombinationRun2/CombinedCards/smH_PTH/HggHZZHWWHttHbbVBFHttBoost.txt \
+--config-file DifferentialCombinationRun2/metadata/SMEFT/230620PruneNoCPEVPtFullCombLinearised.yml \
+--equations-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiff-230530_rotated230620PruneNoCPPtFullCombA \
+--chan-obs DifferentialCombinationRun2/metadata/SMEFT/config/PtFullComb.json \
+--linearised
 ```
 
+Submit scans:
+
+```
+submit_SMEFT_scans.py \
+--chan-obs DifferentialCombinationRun2/metadata/SMEFT/config/PtFullComb.json \
+--category asimov \
+--input-dir DifferentialCombinationRun2/CombinedWorkspaces/SMEFT/230620PruneNoCPEVPtFullCombLinearised \
+--output-dir outputs/SMEFT_scans \
+--base-model DifferentialCombinationRun2/metadata/SMEFT/230620PruneNoCPEVPtFullCombLinearised.yml \
+--submodel DifferentialCombinationRun2/metadata/SMEFT/230620PruneNoCPEVPtFullCombLinearised.yml
+```
+
+Plot:
+
+```
+plot_SMEFT_scans.py \
+--how submodel \
+--model 230620PruneNoCPEVPtFullCombLinearised \
+--submodel DifferentialCombinationRun2/metadata/SMEFT/230620PruneNoCPEVPtFullCombLinearised.yml \
+--input-dir outputs/SMEFT_scans \
+--output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/SMEFT_plots \
+--categories PtFullComb \
+--combination PtFullComb \
+--expected \
+--skip-2d \
+--config-file DifferentialCombinationRun2/metadata/SMEFT/plot_config.yml
+```

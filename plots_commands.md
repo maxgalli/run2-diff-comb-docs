@@ -40,19 +40,33 @@ plot_matrices.py --rfr-file DifferentialCombinationRun2/outputs/matrices/SM/TauC
 PCA related plots:
 
 ```
-python pca.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-prelim-SMEFT-topU3l_22_05_05 --model-yaml /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/221220PruneNoCP.yml --channels hgg hzz hww htt hbbvbf httboost --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/EFTModelsStudies/SMEFT/FullStudies --how A
+python pca.py \
+--prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiff-230530 \
+--model-yaml /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/230620PruneNoCP.yml \
+--config /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/config/PtFullComb.json \
+--output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/EFTModelsStudies/SMEFT/FullStudies \
+--how A
 ```
 
 ```
-plot_SMEFT_scans.py --how submodel --model 221220PruneNoCPEVhgghzzhwwhtthbbvbfhttboostLinearised --submodel DifferentialCombinationRun2/metadata/SMEFT/221220PruneNoCPEVhgghzzhwwhtthbbvbfhttboostLinearised.yml --input-dir outputs/SMEFT_scans --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/SMEFT_plots --categories HggHZZHWWHttHbbVBFHttBoost --combination HggHZZHWWHttHbbVBFHttBoost --expected --skip-2d --config-file DifferentialCombinationRun2/metadata/SMEFT/plot_config.yml
+plot_SMEFT_scans.py \
+--how submodel \
+--model 230620PruneNoCPEVPtFullCombLinearised \
+--submodel DifferentialCombinationRun2/metadata/SMEFT/230620PruneNoCPEVPtFullCombLinearised.yml \
+--input-dir outputs/SMEFT_scans \
+--output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/SMEFT_plots \
+--categories PtFullComb \
+--combination PtFullComb \
+--expected \
+--skip-2d \
+--config-file DifferentialCombinationRun2/metadata/SMEFT/plot_config.yml
 ```
 
 ```
-plot_SMEFT_linquad.py --linear /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/221220PruneNoCPEVhgghzzhwwhtthbbvbfhttboostLinearised.yml --quad /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/221220PruneNoCPEVhgghzzhwwhtthbbvbfhttboostNonLinear.yml --input-dir outputs/SMEFT_scans --category HggHZZHWWHttHbbVBFHttBoost_asimov --observable smH_PTH --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/SMEFT_plots/LinQuad --config-file DifferentialCombinationRun2/metadata/SMEFT/plot_config.yml
-```
-
-```
-plot_matrices.py --rfr-file outputs/SMEFT_scans/smH_PTH/221220PruneNoCPEVhgghzzhwwhtthbbvbfhttboostLinearised/221220PruneNoCPEVhgghzzhwwhtthbbvbfhttboostLinearised/HggHZZHWWHttHbbVBFHttBoost_asimov-20221229xxx162930/multidimfitAsimovBestFit.root --output-dir outputs/SMEFT_plots/smH_PTH/221220PruneNoCPEVhgghzzhwwhtthbbvbfhttboostLinearised/221220PruneNoCPEVhgghzzhwwhtthbbvbfhttboostLinearised --pois EV0 EV1 EV2 EV3 EV4 EV5 EV6
+plot_matrices.py \
+--rfr-file outputs/SMEFT_scans/230620PruneNoCPEVPtFullCombLinearised/230620PruneNoCPEVPtFullCombLinearised/PtFullComb_asimov-20230620xxx190728/multidimfitAsimovBestFit.root \
+--output-dir outputs/SMEFT_plots/230620PruneNoCPEVPtFullCombLinearised/230620PruneNoCPEVPtFullCombLinearised \
+--pois EV0 EV1 EV2 EV3 EV4 EV5 EV6 EV7 EV8 EV9 EV10 EV11
 ```
 
 ```
@@ -74,11 +88,14 @@ python print_latex_equations.py --prediction-dir /work/gallim/DifferentialCombin
 Mega SMEFT tables:
 
 ```
-python print_latex_equations.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-prelim-SMEFT-topU3l_22_05_05_rotated221220PruneNoCPhgghzzhwwhtthbbvbfhttboostA --submodel-yaml /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/221220PruneNoCPEVhgghzzhwwhtthbbvbfhttboostLinearised.yml --channels hgg hzz hww htt hbbvbf httboost --fit-model full
+python print_latex_equations.py \
+--prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiff-230530_rotated230620PruneNoCPPtFullCombA \
+--submodel-yaml /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/230620PruneNoCPEVPtFullCombLinearised.yml \
+--fit-model linearised \
+--config /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/config/PtFullComb.json
 
-python print_latex_equations.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-prelim-SMEFT-topU3l_22_05_05_rotated221220PruneNoCPhgghzzhwwhtthbbvbfhttboostA --submodel-yaml /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/221220PruneNoCPEVhgghzzhwwhtthbbvbfhttboostLinearised.yml --channels hgg hzz hww htt hbbvbf httboost --fit-model linearised
-
-python print_latex_equations_ev.py --input-file /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/EFTModelsStudies/SMEFT/FullStudies/CMS-prelim-SMEFT-topU3l_22_05_05-221220PruneNoCP/PCA-hgghzzhwwhtthbbvbfhttboost-Full-A.json
+python print_latex_equations_ev.py \
+--input-file /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/EFTModelsStudies/SMEFT/FullStudies/CMS-ForDiff-230530-230620PruneNoCP-PtFullComb/PCA-hgghzzhwwhtthbbvbfhttboost-Full-A.json
 ```
 
 Pruned scans:
