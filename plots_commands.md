@@ -85,6 +85,18 @@ python print_latex_equations.py --prediction-dir /work/gallim/DifferentialCombin
 python print_latex_equations.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiff-230530-FullDecay --submodel-yaml /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ_ChwbScen.yml --fit-model full --config /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/config/DeltaPhiJJHggHZZ.json
 ```
 
+Equations for pth cp-even cp-odd:
+
+```
+python print_latex_equations.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiffAllSMEFTsim-230530-FullDecay --submodel-yaml /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/220926Atlas_ChgScen.yml --fit-model full --config /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/config/PtFullComb.json
+
+python print_latex_equations.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiff-230530-FullDecay --submodel-yaml /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/220926Atlas_ChbScen.yml --fit-model full --config /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/config/PtFullComb.json
+
+python print_latex_equations.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiff-230530-FullDecay --submodel-yaml /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/220926Atlas_ChwScen.yml --fit-model full --config /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/config/PtFullComb.json
+
+python print_latex_equations.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiff-230530-FullDecay --submodel-yaml /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/220926Atlas_ChwbScen.yml --fit-model full --config /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/config/PtFullComb.json
+```
+
 Mega SMEFT tables:
 
 ```
