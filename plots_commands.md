@@ -110,6 +110,20 @@ python print_latex_equations_ev.py \
 --input-file /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/EFTModelsStudies/SMEFT/FullStudies/CMS-ForDiff-230530-230620PruneNoCP-PtFullComb/PCA-hgghzzhwwhtthbbvbfhttboost-Full-A.json
 ```
 
+Plot equations for all cases (CP-even CP-odd pt and deltaphij, + PCA)
+
+```
+python plot_shape_matt_predictions.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiffAllSMEFTsim-230530-FullDecay --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/AN_plots/SMEFT/equations --config-file /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/220926Atlas_ChgScen.yml --chan-obs /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/config/PtFullComb.json --fit-model full
+
+for chan in Chb Chw Chwb; do python plot_shape_matt_predictions.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiff-230530-FullDecay --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/AN_plots/SMEFT/equations --config-file /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/220926Atlas_${chan}Scen.yml --chan-obs /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/config/PtFullComb.json --fit-model full; done
+
+python plot_shape_matt_predictions.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiffAllSMEFTsim-230530-FullDecay --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/AN_plots/SMEFT/equations --config-file /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ_ChgScen.yml --chan-obs /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/config/DeltaPhiJJHggHZZ.json --fit-model full --skip-spectra
+
+for chan in Chb Chw Chwb; do python plot_shape_matt_predictions.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiff-230530-FullDecay --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/AN_plots/SMEFT/equations --config-file /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/230611AtlasDPJ_${chan}Scen.yml --chan-obs /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/config/DeltaPhiJJHggHZZ.json --fit-model full --skip-spectra; done
+
+python plot_shape_matt_predictions.py --prediction-dir /work/gallim/DifferentialCombination_home/EFTScalingEquations/equations/CMS-ForDiff-230530_rotated230620PruneNoCPPtFullCombA --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/AN_plots/SMEFT/equations --config-file /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/230620PruneNoCPEVPtFullCombLinearised.yml --chan-obs /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/metadata/SMEFT/config/PtFullComb.json --fit-model linearised
+```
+
 Pruned scans:
 
 ```
