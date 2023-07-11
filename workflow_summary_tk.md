@@ -30,6 +30,32 @@ At the same time, stupid datacards need to have a proper format for what concern
 produce_TK_cards.py
 ```
 
+### Hgg Signal Model
+
+Porcodio Thomas! Porcodio davvero! As a reminder of this mess: nobody (me included, shame on me) realized that Thomas did not produce the signal model split between ggH and xH contributions. Of course we tried to rederive it, but the state in which he left his stuff made it impossible. We thus have to do something to split the contributions a posteriori. The best way I found consists in the following steps.
+
+First of all, we use the ntuples produced by Thomas to derive fractions of ggH/SM and xH/SM:
+
+```
+cd DifferentialCombinationRun2/specific_scripts
+python3 derive_hgg_xs_for_tk.py
+```
+
+which produces ```DifferentialCombinationRun2/TKPredictions/hgg.json```. We then need to multiply the cross section introduced in each PDF that includes it by these numbers, depending on whether we are using these for ggH or xH. Run:
+
+```
+cd DifferentialCombinationRun2/specific_scripts
+python add_xH_shapes_to_Hgg.py
+```
+
+What this script does is accessing all the ROOT files in Thomas directory for Pt which have ```sigfit``` in the name and creating whitin it two new workspaces, one called ```wsig_13TeV_ggH``` and the other called ```wsig_13TeV_xH```. In these two, the cross sections (whose names start with ```fxs_smH_PTH```) are multiplied by the values found in the JSON file produced in the step before.
+Last but not least, we need to rewrite the shitty datacard. Of course this procedure is a mess because of the text format of stupid Combine. This is taken care of by running:
+
+```
+cd /work/gallim/DifferentialCombination_home
+python3 DifferentialCombinationRun2/specific_scripts/add_xH.py
+```
+
 ### ttH
 
 In the second part of the fits we need contributions from ttH. In TK's original code the predictions are in much larger bins, so we need to get new ones. This is done using Thomas' stuff.
