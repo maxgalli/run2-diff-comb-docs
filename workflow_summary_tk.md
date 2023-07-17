@@ -90,11 +90,9 @@ htt=DifferentialCombinationRun2/Analyses/hig-20-015/HiggsPt/HTT_Run2FinalCard_Hi
 ```
 combineCards.py \
 hgg=DifferentialCombinationRun2/Analyses/hig-19-016/outdir_differential_Pt/TK_Top_out.txt \
-hzz=DifferentialCombinationRun2/Analyses/Test/hzz_pth_ggH_Sep0
-4_all.txt \
+hzz=DifferentialCombinationRun2/Analyses/Test/hzz_pth_ggH_Sep04_all.txt \
 htt=DifferentialCombinationRun2/Analyses/hig-20-015/HiggsPt/HTT_Run2FinalCard_HiggsPt_NoReg_xHNuisPar.txt \
- hbbvbf=DifferentialCombinationRun2/Analyses/hig-21-020
-/testModel/model_combined_withpaths.txt \
+hbbvbf=DifferentialCombinationRun2/Analyses/hig-21-020/testModel/model_combined_withpaths.txt \
 httboost=DifferentialCombinationRun2/Analyses/hig-21-017/BoostedHTT_DiffXS_HiggsPt_NoOverLap/V2_Diff_dr0p5_hpt_2bin/hig-21-017_hpt_xHNuisPar.txt \
 --xc=hzz_hzz_PTH_GT600* > DifferentialCombinationRun2/CombinedCards/TK/Top_HggHZZHttHttBoostHbbVBF.txt
 ```
