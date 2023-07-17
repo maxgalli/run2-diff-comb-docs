@@ -22,13 +22,8 @@ python test.py --yukawa_scalecorrelations --writefiles
 this will generate ```out/scalecorrelations_{DATE}_tophighpt``` and ```out/scalecorrelations_{DATE}_yukawa```; these folders are copied inside ```DifferentialCombinationRun2/TKPredictions/scalecorrelations_{DECAY_CHANNEL}```
 - at this point the idea consists in generating yaml files containing the above mentioned dictionaries; from ```DifferentialCombination_home``` run 
 ```
-python DifferentialCombinationRun2/specific_scripts/prepare_TK_metadata.py
+python3 DifferentialCombinationRun2/specific_scripts/prepare_TK_metadata.py
 ``` 
-
-At the same time, stupid datacards need to have a proper format for what concerns the names of the processes in order to be correctly picked up in the mapping business. This is done by running 
-```
-produce_TK_cards.py
-```
 
 ### Hgg Signal Model
 
@@ -77,6 +72,46 @@ root_pandas
 
 The whole thing is then taken care of in ```prepare_TK_metadata.py```, which dumps a JSON file then used by TK's model.
 
+### Add xH
+
+```
+python3 DifferentialCombinationRun2/specific_scripts/produce_TK_cards_inputs.py
+```
+
+### Combine Cards
+
+```
+combineCards.py \
+hgg=DifferentialCombinationRun2/Analyses/hig-19-016/outdir_differential_Pt/TK_Yukawa_out.txt \
+hzz=DifferentialCombinationRun2/Analyses/Test/hzz_pth_ggH_Sep04_all.txt \
+htt=DifferentialCombinationRun2/Analyses/hig-20-015/HiggsPt/HTT_Run2FinalCard_HiggsPt_NoReg_xHNuisPar.txt > DifferentialCombinationRun2/CombinedCards/TK/Yukawa_HggHZZHtt.txt
+```
+
+```
+combineCards.py \
+hgg=DifferentialCombinationRun2/Analyses/hig-19-016/outdir_differential_Pt/TK_Top_out.txt \
+hzz=DifferentialCombinationRun2/Analyses/Test/hzz_pth_ggH_Sep0
+4_all.txt \
+htt=DifferentialCombinationRun2/Analyses/hig-20-015/HiggsPt/HTT_Run2FinalCard_HiggsPt_NoReg_xHNuisPar.txt \
+ hbbvbf=DifferentialCombinationRun2/Analyses/hig-21-020
+/testModel/model_combined_withpaths.txt \
+httboost=DifferentialCombinationRun2/Analyses/hig-21-017/BoostedHTT_DiffXS_HiggsPt_NoOverLap/V2_Diff_dr0p5_hpt_2bin/hig-21-017_hpt_xHNuisPar.txt \
+--xc=hzz_hzz_PTH_GT600* > DifferentialCombinationRun2/CombinedCards/TK/Top_HggHZZHttHttBoostHbbVBF.txt
+```
+
+and check the paths because porcodio Combine!
+
+### Produce cards
+
+At the same time, stupid datacards need to have a proper format for what concerns the names of the processes in order to be correctly picked up in the mapping business. This is done by running 
+```
+produce_TK_cards.py
+```
+
+**Important note**: in a previous version of this script there was also a part that was replacing ```smH``` with ```ggH``` and dump ```TK_Yukawa.txt``` for Hgg. Let's assume that this is done and it's already in the repo. Diomerdachecasino.
+
+REMOVE THE PATHS!!
+
 ## Produce workspaces
 
 The code that produces the calls to ```text2workspace.py``` is in the script ```produce_TK_workspace.py```. As a reminder for myself, the structure of the dictionaries here tries to reflect the fact that, despite having 6 different scenarios, theory files and stuff seem to depend only on the macro scenarios "Yukawa" and "Top". The other category used to discriminate is, of course, the decay channel (i.e. "Hgg", "HZZ", etc.).
@@ -113,115 +148,3 @@ plot_TK_scans.py --model yukawa_coupdep --input-dir /work/gallim/DifferentialCom
 
 ## Most recently updated commands
 
-### Yukawa_NOTscalingbbH_couplingdependentBRs
-
-*HggHZZHWWHtt*
-
-```
-# produce workspace
-produce_TK_workspace.py --model Yukawa_NOTscalingbbH_couplingdependentBRs --category HggHZZHWWHtt
-
-# submit scans
-submit_TK_scans.py --model Yukawa_NOTscalingbbH_couplingdependentBRs --category HggHZZHWWHtt_asimov --input-dir /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/CombinedWorkspaces/TK --output-dir outputs/TK_scans
-```
-
-*Plots*
-```
-# Expected only
-plot_TK_scans.py --model yukawa_coupdep --input-dir /work/gallim/DifferentialCombination_home/outputs/TK_scans/Yukawa_NOTscalingbbH_couplingdependentBRs --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/TK_plots/yukawa_coupdep --categories HggHZZHWWHtt --combination HggHZZHWWHtt --expected
-```
-
-### Yukawa_NOTscalingbbH_floatingBRs
-
-*HggHZZHWWHtt*
-
-```
-# produce workspace
-produce_TK_workspace.py --model Yukawa_NOTscalingbbH_floatingBRs --category HggHZZHWWHtt
-
-# submit scans
-submit_TK_scans.py --model Yukawa_NOTscalingbbH_floatingBRs --category HggHZZHWWHtt_asimov --input-dir /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/CombinedWorkspaces/TK --output-dir outputs/TK_scans
-```
-
-*Plots*
-```
-# Expected only
-plot_TK_scans.py --model yukawa_floatingBR --input-dir /work/gallim/DifferentialCombination_home/outputs/TK_scans/Yukawa_NOTscalingbbH_floatingBRs --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/TK_plots/yukawa_floatingBR --categories HggHZZHWWHtt --combination HggHZZHWWHtt --expected
-
-```
-
-### Top_scalingttH_couplingdependentBRs
-
-*HggHZZHWWHttHttBoost*
-
-```
-# produce workspace
-produce_TK_workspace.py --model Top_scalingttH_couplingdependentBRs --category HggHZZHWWHttHttBoost
-
-# submit scans
-submit_TK_scans.py --model Top_scalingttH_couplingdependentBRs --category HggHZZHWWHttHttBoost_asimov --input-dir /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/CombinedWorkspaces/TK --output-dir outputs/TK_scans
-```
-
-*Plots*
-```
-# Expected only
-plot_TK_scans.py --model top_coupdep_ctcg --input-dir /work/gallim/DifferentialCombination_home/outputs/TK_scans/Top_scalingttH_couplingdependentBRs --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/TK_plots/top_coupdep_ctcg --categories HggHZZHWWHttHttBoost --combination HggHZZHWWHttHttBoost --expected
-```
-
-
-### Top_scalingttH_floatingBRs
-
-*HggHZZHWWHttHttBoost*
-
-```
-# produce workspace
-produce_TK_workspace.py --model Top_scalingttH_floatingBRs --category HggHZZHWWHttHttBoost
-
-# submit scans
-submit_TK_scans.py --model Top_scalingttH_floatingBRs --category HggHZZHWWHttHttBoost_asimov --input-dir /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/CombinedWorkspaces/TK --output-dir outputs/TK_scans
-```
-
-*Plots*
-```
-# Expected only
-plot_TK_scans.py --model top_floatingBR_ctcg --input-dir /work/gallim/DifferentialCombination_home/outputs/TK_scans/Top_scalingttH_floatingBRs --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/TK_plots/top_floatingBR_ctcg --categories HggHZZHWWHttHttBoost --combination HggHZZHWWHttHttBoost --expected
-
-
-```
-
-### Top_scalingbbHttH_couplingdependentBRs
-
-*HggHZZHWWHttHttBoost*
-
-```
-# produce workspace
-produce_TK_workspace.py --model Top_scalingbbHttH_couplingdependentBRs --category HggHZZHWWHttHttBoost
-
-# submit scans
-submit_TK_scans.py --model Top_scalingbbHttH_couplingdependentBRs --category HggHZZHWWHttHttBoost_asimov --input-dir /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/CombinedWorkspaces/TK --output-dir outputs/TK_scans
-
-```
-
-*Plots*
-
-```
-# Expected only
-plot_TK_scans.py --model top_coupdep_ctcb --input-dir /work/gallim/DifferentialCombination_home/outputs/TK_scans/Top_scalingbbHttH_couplingdependentBRs --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2/TK_plots/top_coupdep_ctcb --categories HggHZZHWWHttHttBoost --combination HggHZZHWWHttHttBoost --expected
-```
-
-### Top_scalingbbHttH_floatingBRs
-
-*HggHZZHWWHttHttBoost*
-
-```
-# produce workspace
-produce_TK_workspace.py --model Top_scalingbbHttH_floatingBRs --category HggHZZHWWHttHttBoost
-
-# submit scans
-submit_TK_scans.py --model Top_scalingbbHttH_floatingBRs --category HggHZZHWWHttHttBoost_asimov --input-dir /work/gallim/DifferentialCombination_home/DifferentialCombinationRun2/CombinedWorkspaces/TK --output-dir outputs/TK_scans
-```
-
-*Plots*
-
-```
-```
