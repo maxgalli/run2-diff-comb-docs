@@ -81,20 +81,15 @@ python3 DifferentialCombinationRun2/specific_scripts/produce_TK_cards_inputs.py
 ### Combine Cards
 
 ```
-combineCards.py \
-hgg=DifferentialCombinationRun2/Analyses/hig-19-016/outdir_differential_Pt/TK_Yukawa_out.txt \
-hzz=DifferentialCombinationRun2/Analyses/Test/hzz_pth_ggH_Sep04_all.txt \
-htt=DifferentialCombinationRun2/Analyses/hig-20-015/HiggsPt/HTT_Run2FinalCard_HiggsPt_NoReg_xHNuisPar.txt > DifferentialCombinationRun2/CombinedCards/TK/Yukawa_HggHZZHtt.txt
+combineCards.py hgg=DifferentialCombinationRun2/Analyses/hig-19-016/outdir_differential_Pt/TK_Yukawa_out.txt hzz=DifferentialCombinationRun2/Analyses/Test/Yukawa_hzz_pth_ggH_Sep04_all_xHNuisPar.txt htt=DifferentialCombinationRun2/Analyses/hig-20-015/HiggsPt/HTT_Run2FinalCard_HiggsPt_NoReg_xHNuisPar.txt --xc=htt_PTH_120_200* --xc=htt_PTH_200_350* --xc=htt_PTH_350_450* --xc=htt_PTH_GT350* --xc=htt_PTH_GT450* > CombinedCards/TK/Yukawa_HggHZZHtt_pruned.txt
 ```
 
 ```
-combineCards.py \
-hgg=DifferentialCombinationRun2/Analyses/hig-19-016/outdir_differential_Pt/TK_Top_out.txt \
+combineCards.py hgg=DifferentialCombinationRun2/Analyses/hig-19-016-noprune/outdir_differential_Pt/TK_Top_out.txt \
 hzz=DifferentialCombinationRun2/Analyses/Test/hzz_pth_ggH_Sep04_all.txt \
 htt=DifferentialCombinationRun2/Analyses/hig-20-015/HiggsPt/HTT_Run2FinalCard_HiggsPt_NoReg_xHNuisPar.txt \
 hbbvbf=DifferentialCombinationRun2/Analyses/hig-21-020/testModel/model_combined_withpaths.txt \
-httboost=DifferentialCombinationRun2/Analyses/hig-21-017/BoostedHTT_DiffXS_HiggsPt_NoOverLap/V2_Diff_dr0p5_hpt_2bin/hig-21-017_hpt_xHNuisPar.txt \
---xc=hzz_hzz_PTH_GT600* > DifferentialCombinationRun2/CombinedCards/TK/Top_HggHZZHttHttBoostHbbVBF.txt
+httboost=DifferentialCombinationRun2/Analyses/hig-21-017/BoostedHTT_DiffXS_HiggsPt_NoOverLap/V2_Diff_dr0p5_hpt_2bin/hig-21-017_hpt_xHNuisPar.txt --xc=hzz_hzz_PTH_GT600* > CombinedCards/TK/Top_HggHZZHttHttBoostHbbVBF.txt
 ```
 
 and check the paths because porcodio Combine!
