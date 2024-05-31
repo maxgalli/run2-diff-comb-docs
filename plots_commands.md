@@ -149,3 +149,17 @@ python chi_square_fitter.py --prediction-dir /work/gallim/DifferentialCombinatio
 
 python tries/230615_CheckaAN.py
 ```
+
+## Paper
+
+SMEFT material for theorists
+
+Observed covariance matrices:
+```
+cd /work/gallim/DifferentialCombination_home/DiffCombOrchestrator
+plot_matrices.py --rfr-file outputs/SM_scans/smH_PTH/Hgg-luigi/multidimfit_POSTFIT_Hgg.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade/AN_plots/SMEFT/for_theorists --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/smH_PTH/Hgg.yml --suffix _Hgg --observable smH_PTH
+plot_matrices.py --rfr-file EFTModelsStudies/input/SMEFT/smH_PTH/observed/HZZ/multidimfit_POSTFIT_HZZ.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade/AN_plots/SMEFT/for_theorists --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/smH_PTH/HZZ.yml --suffix _HZZ --observable smH_PTH
+plot_matrices.py --rfr-file EFTModelsStudies/input/SMEFT/smH_PTH/observed/HttBoost/multidimfit_POSTFIT_HttBoost.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade/AN_plots/SMEFT/for_theorists --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/smH_PTH/HttBoost.yml --suffix _HttBoost --observable smH_PTH
+plot_matrices.py --rfr-file outputs/SM_scans/smH_PTH/Htt-luigi/multidimfit_POSTFIT_Htt.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade/AN_plots/SMEFT/for_theorists --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/smH_PTH/Htt.yml --suffix _Htt --observable smH_PTH
+plot_matrices.py --rfr-file EFTModelsStudies/input/SMEFT/smH_PTH/observed/HbbVBF/multidimfit_POSTFIT_HbbVBF.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade/AN_plots/SMEFT/for_theorists --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/smH_PTH/HbbVBF.yml --suffix _HbbVBF --observable smH_PTH
+```
