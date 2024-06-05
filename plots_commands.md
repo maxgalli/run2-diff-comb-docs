@@ -152,6 +152,18 @@ python tries/230615_CheckaAN.py
 
 ## Paper
 
+SM
+
+Correlation martices:
+```
+plot_matrices.py --rfr-file outputs/SM_scans/smH_PTH/FinalComb-luigi/multidimfit_POSTFIT_FinalComb.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade/AN_plots/SM/matrices --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/smH_PTH/FinalComb.yml --suffix _smH_PTH_observed --observable smH_PTH
+plot_matrices.py --rfr-file outputs/SM_scans/smH_PTJ0/FinalComb-luigi/multidimfit_POSTFIT_FinalComb.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade/AN_plots/SM/matrices --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/smH_PTJ0/FinalComb.yml --suffix _smH_PTJ0_observed --observable smH_PTJ0
+
+plot_matrices.py --rfr-file outputs/SM_scans/DEtajj/HggHZZ-luigi/multidimfit_POSTFIT_HggHZZ.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade/AN_plots/SM/matrices --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/DEtajj/HggHZZ.yml --suffix _DEtajj_observed --observable DEtajj
+plot_matrices.py --rfr-file outputs/SM_scans/mjj/HggHZZ-luigi/multidimfit_POSTFIT_HggHZZ.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade/AN_plots/SM/matrices --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/mjj/HggHZZ.yml --suffix _mjj_observed --observable mjj
+plot_matrices.py --rfr-file outputs/SM_scans/TauCJ/HggHZZ-luigi/multidimfit_POSTFIT_HggHZZ.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade/AN_plots/SM/matrices --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/TauCJ/HggHZZ.yml --suffix _TauCJ_observed --observable TauCJ
+```
+
 SMEFT material for theorists
 
 Observed covariance matrices:
