@@ -154,7 +154,7 @@ python tries/230615_CheckaAN.py
 
 Correlation martices:
 ```
-plot_matrices.py --rfr-file outputs/SM_scans/smH_PTH/FinalComb2-luigi/multidimfit_POSTFIT_FinalComb.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade/AN_plots/SM/matrices --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/smH_PTH/FinalComb2.yml --suffix _smH_PTH_observed --observable smH_PTH
+plot_matrices.py --rfr-file outputs/SM_scans/smH_PTH/FinalComb2-luigi/multidimfit_POSTFIT_FinalComb2.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade/AN_plots/SM/matrices --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/smH_PTH/FinalComb2.yml --suffix _smH_PTH_observed --observable smH_PTH
 plot_matrices.py --rfr-file outputs/SM_scans/Njets/HggHZZHWWHtt-luigi/multidimfit_POSTFIT_HggHZZHWWHtt.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade/AN_plots/SM/matrices --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/Njets/HggHZZHWWHtt.yml --suffix _Njets_observed --observable Njets
 plot_matrices.py --rfr-file outputs/SM_scans/yH/HggHZZ-luigi/multidimfit_POSTFIT_HggHZZ.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade/AN_plots/SM/matrices --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/yH/HggHZZ.yml --suffix _yH_observed --observable yH
 plot_matrices.py --rfr-file outputs/SM_scans/smH_PTJ0/FinalComb-luigi/multidimfit_POSTFIT_FinalComb.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade/AN_plots/SM/matrices --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/smH_PTJ0/FinalComb.yml --suffix _smH_PTJ0_observed --observable smH_PTJ0
