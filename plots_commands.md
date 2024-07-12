@@ -196,3 +196,24 @@ PCA stuff:
 ```
 python3 pca.py --prediction-dir /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/EFTScalingEquations/equations/CMS-ForDiff-230530 --model-yaml /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/DifferentialCombinationRun2/metadata/SMEFT/230620PruneNoCP.yml --config /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/DifferentialCombinationRun2/metadata/SMEFT/config/PtFullComb2.json --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade/EFTModelsStudies --how A
 ```
+
+PCA 1D fits:
+
+```
+plot_SMEFT_scans.py --how submodel --input-dir /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/outputs/SMEFT_scans --output-dir /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/outputs/SMEFT_plots --model 230620PruneNoCPEVPtFullComb2Linearised --submodel /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/DifferentialCombinationRun2/metadata/SMEFT/230620PruneNoCPEVPtFullComb2Linearised.yml --categories PtFullComb2 --combination PtFullComb2 --config-file /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/DifferentialCombinationRun2/metadata/SMEFT/plot_config.yml --skip-2d --summary-plot --expected-bkg
+
+for wc in chg cbbre cbhim cbhre cbwim cbwre cehim cehre chb chbox chbq chd chdd che chj1 chj3 chl1 chl3 chq1 chq3 cht chu chw chwb cll1 ctbre ctgre cthre ctwre cuhre cw; do plot_SMEFT_scans.py --how freezeothers --coefficients $wc --input-dir /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/outputs/SMEFT_scans --output-dir /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/outputs/SMEFT_plots --model 230620PruneNoCP --categories PtFullComb2 --combination PtFullComb2 --config-file /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/DifferentialCombinationRun2/metadata/SMEFT/plot_config.yml --expected-bkg; done
+```
+
+Copy commands:
+
+```
+cd /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade
+cp -r SM_plots/* AN_plots/SM/results_upgrade
+cp -r TK_plots/* AN_plots/KFramework
+cp -r EFTModelsStudies/CMS-ForDiff-230530-230620PruneNoCP-PtFullComb2/* AN_plots/SMEFT/pca
+cp -r SMEFT_plots/220926Atlas AN_plots/SMEFT/results
+cp -r SMEFT_plots/230611AtlasDPJ AN_plots/SMEFT/results
+cp -r SMEFT_plots/230620PruneNoCPEVPtFullComb2Linearised AN_plots/SMEFT/results
+cp -r SMEFT_plots/230620PruneNoCP AN_plots/SMEFT/results
+```
