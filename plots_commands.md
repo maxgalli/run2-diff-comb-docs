@@ -152,8 +152,6 @@ python tries/230615_CheckaAN.py
 
 ## Paper
 
-SM
-
 Correlation martices:
 ```
 plot_matrices.py --rfr-file outputs/SM_scans/smH_PTH/FinalComb-luigi/multidimfit_POSTFIT_FinalComb.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade/AN_plots/SM/matrices --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/smH_PTH/FinalComb.yml --suffix _smH_PTH_observed --observable smH_PTH
@@ -163,6 +161,12 @@ plot_matrices.py --rfr-file outputs/SM_scans/smH_PTJ0/FinalComb-luigi/multidimfi
 plot_matrices.py --rfr-file outputs/SM_scans/DEtajj/HggHZZ-luigi/multidimfit_POSTFIT_HggHZZ.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade/AN_plots/SM/matrices --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/DEtajj/HggHZZ.yml --suffix _DEtajj_observed --observable DEtajj
 plot_matrices.py --rfr-file outputs/SM_scans/mjj/HggHZZ-luigi/multidimfit_POSTFIT_HggHZZ.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade/AN_plots/SM/matrices --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/mjj/HggHZZ.yml --suffix _mjj_observed --observable mjj
 plot_matrices.py --rfr-file outputs/SM_scans/TauCJ/HggHZZ-luigi/multidimfit_POSTFIT_HggHZZ.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade/AN_plots/SM/matrices --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/TauCJ/HggHZZ.yml --suffix _TauCJ_observed --observable TauCJ
+```
+
+Spectra:
+
+```
+source plot_all_spectra.sh
 ```
 
 SMEFT material for theorists
@@ -179,4 +183,16 @@ plot_matrices.py --rfr-file EFTModelsStudies/input/SMEFT/smH_PTH/observed/HZZ/mu
 plot_matrices.py --rfr-file EFTModelsStudies/input/SMEFT/smH_PTH/observed/HttBoost/multidimfit_POSTFIT_HttBoost.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade/AN_plots/SMEFT/for_theorists --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/smH_PTH/HttBoost.yml --suffix _HttBoost --observable smH_PTH
 plot_matrices.py --rfr-file outputs/SM_scans/smH_PTH/Htt-luigi/multidimfit_POSTFIT_Htt.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade/AN_plots/SMEFT/for_theorists --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/smH_PTH/Htt.yml --suffix _Htt --observable smH_PTH
 plot_matrices.py --rfr-file EFTModelsStudies/input/SMEFT/smH_PTH/observed/HbbVBF/multidimfit_POSTFIT_HbbVBF.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade/AN_plots/SMEFT/for_theorists --pois DifferentialCombinationRun2/metadata/xs_POIs/SM/smH_PTH/HbbVBF.yml --suffix _HbbVBF --observable smH_PTH
+```
+
+All 2D scans:
+
+```
+plot_all_twod.sh
+```
+
+PCA stuff:
+
+```
+python3 pca.py --prediction-dir /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/EFTScalingEquations/equations/CMS-ForDiff-230530 --model-yaml /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/DifferentialCombinationRun2/metadata/SMEFT/230620PruneNoCP.yml --config /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/DifferentialCombinationRun2/metadata/SMEFT/config/PtFullComb2.json --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade/EFTModelsStudies --how A
 ```
