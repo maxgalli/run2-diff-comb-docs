@@ -172,7 +172,7 @@ source plot_all_spectra.sh
 SMEFT material for theorists
 
 ```
-plot_matrices.py --rfr-file outputs/SMEFT_scans/230620PruneNoCPEVPtFullCombLinearised/230620PruneNoCPEVPtFullCombLinearised/PtFullComb-luigi/multidimfit_POSTFIT_PtFullComb.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade/AN_plots/SMEFT/results/matrices --pois EV0 EV1 EV2 EV3 EV4 EV5 EV6 EV7 EV8 EV9 --suffix _PCA_observed
+plot_matrices.py --rfr-file outputs/SMEFT_scans/230620PruneNoCPEVPtFullComb2Linearised/230620PruneNoCPEVPtFullComb2Linearised/PtFullComb2-luigi/multidimfit_POSTFIT_PtFullComb2.root --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade/AN_plots/SMEFT/results/matrices --pois EV0 EV1 EV2 EV3 EV4 EV5 EV6 EV7 EV8 EV9 --suffix _PCA_observed
 ```
 
 Observed covariance matrices:
