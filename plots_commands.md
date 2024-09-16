@@ -195,6 +195,7 @@ PCA stuff:
 
 ```
 python3 pca.py --prediction-dir /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/EFTScalingEquations/equations/CMS-ForDiff-230530 --model-yaml /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/DifferentialCombinationRun2/metadata/SMEFT/230620PruneNoCP.yml --config /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/DifferentialCombinationRun2/metadata/SMEFT/config/PtFullComb2.json --output-dir /eos/home-g/gallim/www/plots/DifferentialCombination/CombinationRun2Upgrade/EFTModelsStudies --how A
+plot_SMEFT_scans.py --how freezeothers --output-dir /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/outputs/SMEFT_plots --model 230620PruneNoCP --categories PtFullComb2 --freezeothers-lambda-plot
 ```
 
 PCA 1D fits:
