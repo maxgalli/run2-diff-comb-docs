@@ -218,3 +218,125 @@ cp -r SMEFT_plots/230611AtlasDPJ AN_plots/SMEFT/results
 cp -r SMEFT_plots/230620PruneNoCPEVPtFullComb2Linearised AN_plots/SMEFT/results
 cp -r SMEFT_plots/230620PruneNoCP AN_plots/SMEFT/results
 ```
+
+## Total XS
+
+### Combination
+
+First, change the numbers in HZZ outside acceptance such that they do not conflict, then:
+```
+combineCards.py hgg=DifferentialCombinationRun2/Analyses/hig-19-016/outdir_differential_PtInclusive/Datacard_13TeV_differential_PtInclusive.txt hzz=DifferentialCombinationRun2/Analyses/hig-21-009/mass4l/hzz4l_all_13TeV_xs_mass4l_bin_v3.txt > CombinedCards/PtInclusive/HggHZZ.txt
+```
+
+Add the following lines:
+
+```
+ggH_muF 1.00232429/0.99735216 - - 1.00232429/0.99735216 - - 1.00232429/0.99735216 - - 1.00232429/0.99735216 - - 1.00232429/0.99735216 - - 1.00232429/0.99735216 - - 1.00232429/0.99735216 - - 1.00232429/0.99735216 - - 1.00232429/0.99735216 - - 0.99977986/1.00024839 - - - - - 0.99977986/1.00024839 - - - - - 0.99977986/1.00024839 - - - - - 0.99977986/1.00024839 - - - - - 0.99977986/1.00024839 - - - - - 0.99977986/1.00024839 - - - - - 0.99977986/1.00024839 - - - - - 0.99977986/1.00024839 - - - - - 0.99977986/1.00024839 - - - - -
+
+ggH_muR 1.00201941/0.99781875 - - 1.00201941/0.99781875 - - 1.00201941/0.99781875 - - 1.00201941/0.99781875 - - 1.00201941/0.99781875 - - 1.00201941/0.99781875 - - 1.00201941/0.99781875 - - 1.00201941/0.99781875 - - 1.00201941/0.99781875 - - 0.99995739/1.00005446 - - - - - 0.99995739/1.00005446 - - - - - 0.99995739/1.00005446 - - - - - 0.99995739/1.00005446 - - - - - 0.99995739/1.00005446 - - - - - 0.99995739/1.00005446 - - - - - 0.99995739/1.00005446 - - - - - 0.99995739/1.00005446 - - - - - 0.99995739/1.00005446 - - - - -
+
+scale group = ggH_muF ggH_muR
+
+#param_alphaS
+nuisance edit add * h(tt|ww|zz|zg|gg|mm).* param_alphaS lnN 1.006
+nuisance edit add * hbb.* param_alphaS lnN 0.992
+nuisance edit add * hcc.* param_alphaS lnN 0.987
+nuisance edit add * hgluglu.* param_alphaS lnN 1.036
+
+#param_mB
+nuisance edit add * h(ww|zz|gg|tt|zg|mm|cc|gluglu).* param_mB lnN 0.990
+nuisance edit add * hbb.* param_mB lnN 1.007
+
+#param_mC
+nuisance edit add * hcc.* param_mC lnN 1.051
+
+#param_mt -- 0,1 constraint global on this parameter
+param_mt param 0 1
+
+#HiggsDecayWidthTHU_hqq
+nuisance edit add * h(ww|zz|gg|tt|zg|mm|gluglu).* HiggsDecayWidthTHU_hqq lnN 0.997
+nuisance edit add * h(bb|cc).* HiggsDecayWidthTHU_hqq lnN 1.002
+
+#HiggsDecayWidthTHU_hvv
+nuisance edit add * h(ww|zz).* HiggsDecayWidthTHU_hvv lnN 1.004
+
+#HiggsDecayWidthTHU_hll
+nuisance edit add * h(tt|mm).* HiggsDecayWidthTHU_hll lnN 1.005
+
+#HiggsDecayWidthTHU_hgg
+nuisance edit add * hgg.* HiggsDecayWidthTHU_hgg lnN 1.010
+
+#HiggsDecayWidthTHU_hzg
+nuisance edit add * hzg.* HiggsDecayWidthTHU_hzg lnN 1.050
+
+#HiggsDecayWidthTHU_hgluglu
+nuisance edit add * hgluglu.* HiggsDecayWidthTHU_hgluglu lnN 1.029
+```
+built by hand with the pickle files in ```/work/gallim/DifferentialCombination_home/DiffCombOrchestrator/reviews/240429_ARC/theoretical_uncs```.
+
+Then make workspace and run fits:
+```
+text2workspace.py CombinedCards/PtInclusive/HggHZZ.txt -o /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/CombinedWorkspaces/SM/PtInclusive/HggHZZ.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO 'higgsMassRange=123,127' --PO 'map=.*/smH_*:r[1.0,0.0,3.0]'
+
+cd /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/outputs/SM_scans/PtInclusive/HggHZZ
+
+combine /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/CombinedWorkspaces/SM/PtInclusive/HggHZZ.root -M MultiDimFit -m 125.38 --saveWorkspace --name _POSTFIT_HggHZZ --setParameters r=1 --redefineSignalPOIs r --X-rtd MINIMIZER_freezeDisassociatedParams --cminDefaultMinimizerStrategy 0 --saveFitResult --noMCbonly 1 --cminApproxPreFitTolerance=100 --cminFallbackAlgo Minuit2,Migrad,0:0.1 --X-rtd MINIMIZER_MaxCalls=9999999 --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH --X-rtd MINIMIZER_multiMin_hideConstants --X-rtd MINIMIZER_multiMin_maskConstraints --X-rtd MINIMIZER_multiMin_maskChannels=2 --X-rtd OPTIMIZE_BOUNDS=0 --X-rtd NO_INITIAL_SNAP --X-rtd SIMNLL_GROUPCONSTRAINTS=10 --X-rtd CACHINGPDF_NOCLONE --freezeParameters MH
+
+combineTool.py higgsCombine_POSTFIT_HggHZZ.MultiDimFit.mH125.38.root --name _SCAN_r_HggHZZ -M MultiDimFit -m 125.38 --algo grid --noMCbonly 1 --cminApproxPreFitTolerance=100 --cminFallbackAlgo Minuit2,Migrad,0:0.1 --X-rtd MINIMIZER_MaxCalls=9999999 --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH --X-rtd MINIMIZER_multiMin_hideConstants --X-rtd MINIMIZER_multiMin_maskConstraints --X-rtd MINIMIZER_multiMin_maskChannels=2 --X-rtd OPTIMIZE_BOUNDS=0 --X-rtd NO_INITIAL_SNAP --X-rtd SIMNLL_GROUPCONSTRAINTS=10 --X-rtd CACHINGPDF_NOCLONE --snapshotName "MultiDimFit" --X-rtd MINIMIZER_freezeDisassociatedParams --cminDefaultMinimizerStrategy 0 --floatOtherPOIs=1 --redefineSignalPOIs r --squareDistPoiStep -P r --points 90 --rMin -1 --rMax 3 --split-points 4 --job-mode slurm --sub-opts="--mem=5G" --task-name _SCAN_r_HggHZZ --freezeParameters MH
+
+cd /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/outputs/SM_scans/PtInclusive/HggHZZ_statonly
+cp ../HggHZZ/higgsCombine_POSTFIT_HggHZZ.MultiDimFit.mH125.38.root .
+combineTool.py higgsCombine_POSTFIT_HggHZZ.MultiDimFit.mH125.38.root --name _SCAN_r_HggHZZ -M MultiDimFit -m 125.38 --algo grid --noMCbonly 1 --cminApproxPreFitTolerance=100 --cminFallbackAlgo Minuit2,Migrad,0:0.1 --X-rtd MINIMIZER_MaxCalls=9999999 --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH --X-rtd MINIMIZER_multiMin_hideConstants --X-rtd MINIMIZER_multiMin_maskConstraints --X-rtd MINIMIZER_multiMin_maskChannels=2 --X-rtd OPTIMIZE_BOUNDS=0 --X-rtd NO_INITIAL_SNAP --X-rtd SIMNLL_GROUPCONSTRAINTS=10 --X-rtd CACHINGPDF_NOCLONE --snapshotName "MultiDimFit" --X-rtd MINIMIZER_freezeDisassociatedParams --cminDefaultMinimizerStrategy 0 --floatOtherPOIs=1 --redefineSignalPOIs r --squareDistPoiStep -P r --points 90 --rMin -1 --rMax 3 --split-points 4 --job-mode slurm --sub-opts="--mem=5G" --task-name _SCAN_r_HggHZZ --freezeParameters MH,allConstrainedNuisances,scale
+
+cd /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/outputs/SM_scans/PtInclusive/HggHZZ_asimov
+combine /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/CombinedWorkspaces/SM/PtInclusive/HggHZZ.root -M GenerateOnly -m 125.38 --setParameters r=1 --name AsimovPreFit --saveToys -t -1 -v -1
+
+combine  /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/CombinedWorkspaces/SM/PtInclusive/HggHZZ.root  -M MultiDimFit -m 125.38 -t -1 --toysFile higgsCombineAsimovPreFit.GenerateOnly.mH125.38.123456.root --saveWorkspace -n AsimovBestFit --X-rtd MINIMIZER_freezeDisassociatedParams --cminDefaultMinimizerStrategy 0 --setParameters r=1 --redefineSignalPOIs r --saveFitResult -v -1 --noMCbonly 1 --X-rtd FAST_VERTICAL_MORPH --X-rtd MINIMIZER_multiMin_hideConstants --X-rtd MINIMIZER_multiMin_maskConstraints --X-rtd MINIMIZER_multiMin_maskChannels=2 --X-rtd NO_INITIAL_SNAP --X-rtd SIMNLL_GROUPCONSTRAINTS=10 --X-rtd CACHINGPDF_NOCLONE
+
+combine higgsCombineAsimovBestFit.MultiDimFit.mH125.38.root -M GenerateOnly -m 125.38 --setParameters r=1 --name AsimovPostFit --saveToys --saveWorkspace --snapshotName MultiDimFit -t -1 -v -1 --freezeParameters MH
+
+combineTool.py higgsCombineAsimovPostFit.GenerateOnly.mH125.38.123456.root --name _SCAN_r_HggHZZ -M MultiDimFit -m 125.38 --algo grid -t -1 --toysFile higgsCombineAsimovPostFit.GenerateOnly.mH125.38.123456.root --snapshotName MultiDimFit --X-rtd MINIMIZER_freezeDisassociatedParams --cminDefaultMinimizerStrategy 0 --floatOtherPOIs=1 --redefineSignalPOIs r --squareDistPoiStep -P r --points 90 --split-points 10 --job-mode slurm --sub-opts="--mem=5G" --task-name _SCAN_r_HggHZZ_asimov -v -1 --noMCbonly 1 --X-rtd FAST_VERTICAL_MORPH --X-rtd MINIMIZER_multiMin_hideConstants --X-rtd MINIMIZER_multiMin_maskConstraints --X-rtd MINIMIZER_multiMin_maskChannels=2 --X-rtd NO_INITIAL_SNAP --X-rtd SIMNLL_GROUPCONSTRAINTS=10 --X-rtd CACHINGPDF_NOCLONE --freezeParameters MH
+
+cd /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/outputs/SM_scans/PtInclusive/HggHZZ_asimov_statonly
+cp ../HggHZZ_asimov/*Asimov* .
+combineTool.py higgsCombineAsimovPostFit.GenerateOnly.mH125.38.123456.root --name _SCAN_r_HggHZZ -M MultiDimFit -m 125.38 --algo grid -t -1 --toysFile higgsCombineAsimovPostFit.GenerateOnly.mH125.38.123456.root --snapshotName MultiDimFit --X-rtd MINIMIZER_freezeDisassociatedParams --cminDefaultMinimizerStrategy 0 --floatOtherPOIs=1 --redefineSignalPOIs r --squareDistPoiStep -P r --points 90 --split-points 10 --job-mode slurm --sub-opts="--mem=5G" --task-name _SCAN_r_HggHZZ_asimov -v -1 --noMCbonly 1 --X-rtd FAST_VERTICAL_MORPH --X-rtd MINIMIZER_multiMin_hideConstants --X-rtd MINIMIZER_multiMin_maskConstraints --X-rtd MINIMIZER_multiMin_maskChannels=2 --X-rtd NO_INITIAL_SNAP --X-rtd SIMNLL_GROUPCONSTRAINTS=10 --X-rtd CACHINGPDF_NOCLONE --freezeParameters MH,allConstrainedNuisances,scale
+```
+
+### Hgg
+
+```
+text2workspace.py DifferentialCombinationRun2/Analyses/hig-19-016/outdir_differential_PtInclusive/Datacard_13TeV_differential_PtInclusive.txt -o /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/CombinedWorkspaces/SM/PtInclusive/Hgg.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO 'higgsMassRange=123,127' --PO 'map=.*/smH_PTH*:r[1.0,0.0,3.0]'
+
+cd /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/outputs/SM_scans/PtInclusive/Hgg
+combine /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/CombinedWorkspaces/SM/PtInclusive/Hgg.root -M MultiDimFit -m 125.38 --saveWorkspace --name _POSTFIT_Hgg --setParameters r=1 --redefineSignalPOIs r --X-rtd MINIMIZER_freezeDisassociatedParams --cminDefaultMinimizerStrategy 0 --saveFitResult --noMCbonly 1 --cminApproxPreFitTolerance=100 --cminFallbackAlgo Minuit2,Migrad,0:0.1 --X-rtd MINIMIZER_MaxCalls=9999999 --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH --X-rtd MINIMIZER_multiMin_hideConstants --X-rtd MINIMIZER_multiMin_maskConstraints --X-rtd MINIMIZER_multiMin_maskChannels=2 --X-rtd OPTIMIZE_BOUNDS=0 --X-rtd NO_INITIAL_SNAP --X-rtd SIMNLL_GROUPCONSTRAINTS=10 --X-rtd CACHINGPDF_NOCLONE
+
+combineTool.py higgsCombine_POSTFIT_Hgg.MultiDimFit.mH125.38.root --name _SCAN_r_Hgg -M MultiDimFit -m 125.38 --algo grid --noMCbonly 1 --cminApproxPreFitTolerance=100 --cminFallbackAlgo Minuit2,Migrad,0:0.1 --X-rtd MINIMIZER_MaxCalls=9999999 --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH --X-rtd MINIMIZER_multiMin_hideConstants --X-rtd MINIMIZER_multiMin_maskConstraints --X-rtd MINIMIZER_multiMin_maskChannels=2 --X-rtd OPTIMIZE_BOUNDS=0 --X-rtd NO_INITIAL_SNAP --X-rtd SIMNLL_GROUPCONSTRAINTS=10 --X-rtd CACHINGPDF_NOCLONE --snapshotName "MultiDimFit" --X-rtd MINIMIZER_freezeDisassociatedParams --cminDefaultMinimizerStrategy 0 --floatOtherPOIs=1 --redefineSignalPOIs r --squareDistPoiStep -P r --points 90 --rMin -1 --rMax 3 --split-points 4 --job-mode slurm --sub-opts="--mem=5G" --task-name _SCAN_r_Hgg
+
+cd /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/outputs/SM_scans/PtInclusive/Hgg_asimov
+combine /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/CombinedWorkspaces/SM/PtInclusive/Hgg.root -M GenerateOnly -m 125.38 --setParameters r=1 --name AsimovPreFit --saveToys -t -1 -v -1
+
+combine  /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/CombinedWorkspaces/SM/PtInclusive/Hgg.root  -M MultiDimFit -m 125.38 -t -1 --toysFile higgsCombineAsimovPreFit.GenerateOnly.mH125.38.123456.root --saveWorkspace -n AsimovBestFit --X-rtd MINIMIZER_freezeDisassociatedParams --cminDefaultMinimizerStrategy 0 --setParameters r=1 --redefineSignalPOIs r --saveFitResult -v -1 --noMCbonly 1 --X-rtd FAST_VERTICAL_MORPH --X-rtd MINIMIZER_multiMin_hideConstants --X-rtd MINIMIZER_multiMin_maskConstraints --X-rtd MINIMIZER_multiMin_maskChannels=2 --X-rtd NO_INITIAL_SNAP --X-rtd SIMNLL_GROUPCONSTRAINTS=10 --X-rtd CACHINGPDF_NOCLONE
+
+combine higgsCombineAsimovBestFit.MultiDimFit.mH125.38.root -M GenerateOnly -m 125.38 --setParameters r=1 --name AsimovPostFit --saveToys --saveWorkspace --snapshotName MultiDimFit -t -1 -v -1 --freezeParameters MH
+
+combineTool.py higgsCombineAsimovPostFit.GenerateOnly.mH125.38.123456.root --name _SCAN_r_Hgg -M MultiDimFit -m 125.38 --algo grid -t -1 --toysFile higgsCombineAsimovPostFit.GenerateOnly.mH125.38.123456.root --snapshotName MultiDimFit --X-rtd MINIMIZER_freezeDisassociatedParams --cminDefaultMinimizerStrategy 0 --floatOtherPOIs=1 --redefineSignalPOIs r --squareDistPoiStep -P r --points 90 --split-points 10 --job-mode slurm --sub-opts="--mem=5G" --task-name _SCAN_r_Hgg_asimov -v -1 --noMCbonly 1 --X-rtd FAST_VERTICAL_MORPH --X-rtd MINIMIZER_multiMin_hideConstants --X-rtd MINIMIZER_multiMin_maskConstraints --X-rtd MINIMIZER_multiMin_maskChannels=2 --X-rtd NO_INITIAL_SNAP --X-rtd SIMNLL_GROUPCONSTRAINTS=10 --X-rtd CACHINGPDF_NOCLONE --freezeParameters MH
+```
+
+### HZZ
+
+```
+text2workspace.py DifferentialCombinationRun2/Analyses/hig-21-009/mass4l/hzz4l_all_13TeV_xs_mass4l_bin_v3.txt -o /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/CombinedWorkspaces/SM/PtInclusive/HZZ.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO 'higgsMassRange=123,127' --PO 'map=.*/smH_*:r[1.0,0.0,3.0]'
+
+cd /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/outputs/SM_scans/PtInclusive/HZZ
+combine /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/CombinedWorkspaces/SM/PtInclusive/HZZ.root --name _SCAN_r_HZZ -m 125.38 --algo=grid --freezeParameters MH --cminDefaultMinimizerStrategy 0 --floatOtherPOIs=1 --method MultiDimFit --points 200 --saveWorkspace --setParameters r=1 --redefineSignalPOIs r
+
+cd /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/outputs/SM_scans/PtInclusive/HZZ_asimov
+combine /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/CombinedWorkspaces/SM/PtInclusive/HZZ.root --name _SCAN_r_HZZ -m 125.38 --algo=grid --freezeParameters MH --cminDefaultMinimizerStrategy 0 --floatOtherPOIs=1 --method MultiDimFit --points 200 --saveWorkspace --setParameters r=1 --redefineSignalPOIs r -t -1
+```
+
+### Plot
+
+```
+cd /work/gallim/DifferentialCombination_home/DiffCombOrchestrator/reviews/240923_AfterPAS
+python3 plot_inclusive.py
+```
